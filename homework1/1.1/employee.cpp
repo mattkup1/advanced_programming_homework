@@ -1,5 +1,4 @@
 #include <iostream>
-#include <cstring>
 
 // employee.cpp
 // This file implements the Employee class, including methods for setting and getting employee details,
@@ -13,44 +12,41 @@ using namespace std;
 // Ensures the ID is a five-digit number, otherwise prints an error message.
 void Employee::setId(int n)
 {
-    if (n < 10000 or n > 99999)
+    if (n < 10000 || n > 99999)
+    {
         cout << "ERROR" << endl;
-    else
-        id = n;
-
-    return;
+        return;
+    }
+    this->id = n;
 }
 
 // Returns the employee ID
 int Employee::getId() const
 {
-    return id;
+    return this->id;
 }
 
 // Sets the employee name
 // Copies the input string into the name array, ensuring it does not exceed 20 characters.
-void Employee::setName(char s[])
+void Employee::setName(const char* s)
 {
-    int i;
-    for (i = 0; i < 20 and s[i] != '\0'; i++)
+    if (s == nullptr)
     {
-        name[i] = s[i];
+        this->name[0] = '\0';  // Set to an empty string
     }
-    name[i] = '\0';
 
-    return;
+    size_t len = strlen(s);  // Get actual length of s
+    if (len > 20) len = 20;  // Limit length to 20
+
+    strncpy(this->name, s, len); // Copy only the actual length
+    this->name[len] = '\0'; // Ensure null termination
 }
 
 // Returns a dynamically allocated copy of the employee's name
 // Caller is responsible for freeing the allocated memory.
-char* Employee::getName() const
+const char* Employee::getName() const
 {
-    int len = strlen(name);
-    char* namePtr = new char[len + 1];
-    strncpy(namePtr, name, len + 1);
-    namePtr[len] = '\0';
-
-    return namePtr;
+    return this->name;
 }
 
 // Sets the employee's hourly wage
@@ -87,9 +83,10 @@ int Employee::getWorkHours() const
 // Ensures the value is non-negative; otherwise, prints an error message.
 void Employee::setMoneyCollected(float n)
 {
-    (n >= 0) ? moneyCollected = n : printf("ERROR\n");
-
-    return;
+    if (n >= 0)
+        moneyCollected = n;
+    else
+        cout << "ERROR" << endl;
 }
 
 // Returns the total money collected by the employee
@@ -109,26 +106,13 @@ float Employee::getMoneyCollected() const
 // Returns the final salary as an integer.
 int Employee::calculateSalary() const
 {
-    float commission;
+    float commission = 0;
 
-    if (moneyCollected < 1000)
-        commission = 0.1;
-    else if (1000 <= moneyCollected and moneyCollected < 2000)
-        commission = 0.15;
-    else if (2000 <= moneyCollected and moneyCollected < 4000)
-        commission = 0.2;
-    else if (4000 <= moneyCollected and moneyCollected < 5000)
-        commission = 0.3;
-    else if (moneyCollected >= 5000)
-        commission = 0.4;
-    else
-    {
-        cout << "ERROR" << endl; 
-        return 0;
-    }
+    if (moneyCollected < 1000)        commission = 0.1;
+    else if (moneyCollected < 2000)   commission = 0.15;
+    else if (moneyCollected < 4000)   commission = 0.2;
+    else if (moneyCollected < 5000)   commission = 0.3;
+    else if (moneyCollected >= 5000)  commission = 0.4;
 
-    float salary = (workHours * wage);
-    salary += (moneyCollected * commission);
-
-    return static_cast <int> (salary);
+    return static_cast<int>((workHours * wage) + (moneyCollected * commission));
 }

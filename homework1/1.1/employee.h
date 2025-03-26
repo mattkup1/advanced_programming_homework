@@ -6,6 +6,7 @@
 // including ID, name, wage, work hours, and money collected.
 
 #include <iostream>
+#include <cstring>
 
 using namespace std;
 
@@ -33,22 +34,22 @@ class Employee
     // Public member functions - accessible from outside the class
     public:
         // Sets the employee ID
-        void setId(int n);
+        void setId(int);
         // Returns the employee ID
         int getId() const;
 
         // Sets the employee name
-        void setName(char s[]);
+        void setName(const char*);
         // Returns the employee name
-        char* getName() const;
+        const char* getName() const;
 
         // Sets the hourly wage
-        void setWage(float n);
+        void setWage(float);
         // Returns the hourly wage
         float getWage() const;
 
         // Sets the number of work hours
-        void setWorkHours(int n);
+        void setWorkHours(int);
         // Returns the number of work hours
         int getWorkHours() const;
 
