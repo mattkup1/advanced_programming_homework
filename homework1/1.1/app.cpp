@@ -42,7 +42,7 @@ int main(void)
         
         cin >> id;
         cin.ignore();
-        cin >> name;
+        cin.getline(name, 21);
         cin >> wage;
         cin >> workHours;
         cin >> moneyCollected;

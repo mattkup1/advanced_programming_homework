@@ -57,7 +57,7 @@ const char* Employee::getName() const
 // Ensures the wage is non-negative; otherwise, prints an error message.
 void Employee::setWage(float n)
 {
-    (n >= 0) ? wage = n : printf("ERROR\n");
+    (n >= 0) ? this->wage = n : printf("ERROR\n");
 
     return;
 }
@@ -65,22 +65,20 @@ void Employee::setWage(float n)
 // Returns the employee's hourly wage
 float Employee::getWage() const
 {
-    return wage;
+    return this->wage;
 }
 
 // Sets the number of hours worked
 // Ensures the value is non-negative; otherwise, prints an error message.
 void Employee::setWorkHours(int n)
 {
-    (n >= 0) ? workHours = n : printf("ERROR\n");
-
-    return;
+    (n >= 0) ? this->workHours = n : printf("ERROR\n");
 }
 
 // Returns the number of hours worked
 int Employee::getWorkHours() const
 {
-    return workHours;
+    return this->workHours;
 }
 
 // Sets the total money collected by the employee
@@ -88,7 +86,7 @@ int Employee::getWorkHours() const
 void Employee::setMoneyCollected(float n)
 {
     if (n >= 0)
-        moneyCollected = n;
+        this->moneyCollected = n;
     else
         cout << "ERROR" << endl;
 }
@@ -96,7 +94,7 @@ void Employee::setMoneyCollected(float n)
 // Returns the total money collected by the employee
 float Employee::getMoneyCollected() const
 {
-    return moneyCollected;
+    return this->moneyCollected;
 }
 
 // Calculates the employee's salary
@@ -118,5 +116,5 @@ int Employee::calculateSalary() const
     else if (moneyCollected < 5000)   commission = 0.3;
     else if (moneyCollected >= 5000)  commission = 0.4;
 
-    return static_cast<int>((workHours * wage) + (moneyCollected * commission));
+    return static_cast<int>((this->workHours * this->wage) + (this->moneyCollected * commission));
 }
