@@ -1,9 +1,13 @@
+/*
+1: Name: Matt Kuperwasser 3222667270
+2: Course: Advanced Programming
+3: Homework 1, Question 1
+4: This file defines the Employee class, which stores and manages employee details,
+including ID, name, wage, work hours, and money collected.
+*/
+
 #ifndef EMPLOYEE_H
 #define EMPLOYEE_H
-
-// employee.h
-// This file defines the Employee class, which stores and manages employee details,
-// including ID, name, wage, work hours, and money collected.
 
 #include <iostream>
 #include <cstring>

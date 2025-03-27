@@ -1,8 +1,12 @@
-#include <iostream>
+/*
+1: Name: Matt Kuperwasser 3222667270
+2: Course: Advanced Programming
+3: Homework 1, Question 1
+4: This file implements the Employee class, including methods for setting and getting employee details,
+as well as calculating salary based on wage, work hours, and commission.
+*/
 
-// employee.cpp
-// This file implements the Employee class, including methods for setting and getting employee details,
-// as well as calculating salary based on wage, work hours, and commission.
+#include <iostream>
 
 #include "employee.h"
 
