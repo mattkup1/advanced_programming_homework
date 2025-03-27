@@ -1,8 +1,12 @@
-#include <iostream>
+/*
+1: Name: Matt Kuperwasser 3222667270
+2: Course: Advanced Programming
+3: Homework 1, Question 1
+4: This program manages employee records, allowing input of employee details,
+and calculating minimum sales, highest salary, and printing employee information.
+*/
 
-// app.cpp
-// This program manages employee records, allowing input of employee details,
-// and calculating minimum sales, highest salary, and printing employee information.
+#include <iostream>
 
 #include "employee.h"
 
@@ -126,3 +130,92 @@ int highestSalary(Employee employees[])
 
     return index;
 }
+
+
+/*
+Example: 
+
+Enter details, for employee number 1 :
+12345
+Matt
+40
+50
+2500
+Enter details, for employee number 2 :
+23456
+Moshe
+30
+50
+500
+Enter details, for employee number 3 :
+34567
+Avraham
+50
+100
+1500
+Enter details, for employee number 4 :
+45678
+Neriah
+100
+20
+4000
+Enter details, for employee number 5 :
+0
+Raffi
+-4
+-10
+6000
+ERROR
+ERROR
+ERROR
+
+Minimum Sold: ID: 23456
+Name: Moshe
+Salary Per Hour: 30
+Hours: 50
+Amount Sold: 500
+Total Salary: 1550
+
+Highest Salary: ID: 34567
+Name: Avraham
+Salary Per Hour: 50
+Hours: 100
+Amount Sold: 1500
+Total Salary: 5225
+
+All Employees: 
+ID: 12345
+Name: Matt
+Salary Per Hour: 40
+Hours: 50
+Amount Sold: 2500
+Total Salary: 2500
+
+ID: 23456
+Name: Moshe
+Salary Per Hour: 30
+Hours: 50
+Amount Sold: 500
+Total Salary: 1550
+
+ID: 34567
+Name: Avraham
+Salary Per Hour: 50
+Hours: 100
+Amount Sold: 1500
+Total Salary: 5225
+
+ID: 45678
+Name: Neriah
+Salary Per Hour: 100
+Hours: 20
+Amount Sold: 4000
+Total Salary: 3200
+
+ID: 11111
+Name: Raffi
+Salary Per Hour: 0
+Hours: 0
+Amount Sold: 6000
+Total Salary: 2400
+*/
