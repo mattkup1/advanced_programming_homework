@@ -1,0 +1,27 @@
+enter number of points:
+in point default constructor
+in point default constructor
+in point default constructor
+in poly one parameter constructor
+enter the point values:
+in point two parameter constructor
+in point two parameter constructor
+in point two parameter constructor
+enter number of points:
+in point default constructor
+in point default constructor
+in point default constructor
+in poly one parameter constructor
+enter the point values:
+in point two parameter constructor
+in point two parameter constructor
+in point two parameter constructor
+in point default constructor
+in point default constructor
+in point default constructor
+in poly copy constructor
+in destructor
+equal
+perimeter:12
+in destructor
+in destructor
