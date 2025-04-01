@@ -8,27 +8,36 @@ using namespace std;
 class Point
 {
 private:
-    float x;
-    float y;
+    // X and Y coordinates
+    double x;
+    double y;
 
 public:
+    // Constructors:
     // Default Constructor
+    // Assignes 0 to X and Y as the default value
     Point();
+
     // Constructor (With parameters)
-    Point(float x, float y);
+    Point(double x, double y);
+
     // Copy Constructor
     Point(Point&);
 
-    // Setters
-    void setX(float);
-    void setY(float);
+    // Methods:
+    // X and Y Setters
+    void setX(double);
+    void setY(double);
 
-    // Getters
-    const float& getX() const;
-    const float& getY() const;
+    // X and Y Getters
+    const double& getX() const;
+    const double& getY() const;
 
-    // Get distance between a point and the argument point
-    float distance(Point&) const;
+    // Returns the distance between the calling point
+    // and the argument point
+    double distance(Point&) const;
 
+    // Returns the equality state between the calling point
+    // and the argument point
     bool isEqual(Point &) const;
 };

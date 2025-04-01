@@ -11,9 +11,10 @@
 #include "Point.h"
 #include "Polygon.h"
 
-const int NUM_POLYGONS = 2;
-
 using namespace std;
+
+// Number of polygons in the array - per requirements
+const int NUM_POLYGONS = 2;
 
 int main()
 {
@@ -45,12 +46,8 @@ int main()
         }
     }
 
-    // Polygon polCopy(*polyArr[1]);
-    // delete polyArr[1];
-
     int perim1 = round(polyArr[0]->perimeter());
     int perim2 = round(polyArr[1]->perimeter());
-    // int perim2 = round(polCopy.perimeter());
 
     if (polyArr[0]->isIdentical(*polyArr[1]))
     {
@@ -65,12 +62,8 @@ int main()
     }
 
     // Clean up memory
-    // delete polyArr[0];
-
     for (int i = 0; i < NUM_POLYGONS; i++)
-    {
         delete polyArr[i];
-    }
 
     return 0;
 }

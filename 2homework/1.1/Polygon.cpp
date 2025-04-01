@@ -70,9 +70,9 @@ void Polygon::setPoint(const Point p, int index)
 
 // Calculate the primeter
 // The distance between each 2 points in the Polygon
-float Polygon::perimeter() const
+double Polygon::perimeter() const
 {
-    float prim = 0;
+    double prim = 0;
     for (int i = 0; i < this->numPoints - 1; i++)
     {
         prim += this->points[i].distance(this->points[i + 1]);
