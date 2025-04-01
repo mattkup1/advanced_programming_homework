@@ -13,8 +13,8 @@ Polygon::Polygon(int n)
 {
     if (n > 0)
     {
-        this->points = new Point[n];
         this->numPoints = n;
+        this->points = new Point[n];
 
         cout << "in poly one parameter constructor" << endl;
     }
@@ -24,6 +24,7 @@ Polygon::Polygon(int n)
 Polygon::Polygon(Polygon &p)
 {
     this->numPoints = p.getNumPoints();
+
     this->points = p.getPoints();
 
     cout << "in poly copy constructor" << endl;

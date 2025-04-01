@@ -18,10 +18,10 @@ using namespace std;
 int main()
 {
     Polygon* polyArr[NUM_POLYGONS];  // Array of Polygon pointers
-    int userNumPoints;
 
     for (int i = 0; i < NUM_POLYGONS; i++)
     {
+        int userNumPoints;
         cout << "enter number of points:" << endl;
         cin >> userNumPoints;
     
@@ -45,10 +45,14 @@ int main()
         }
     }
 
+    // Polygon polCopy(*polyArr[1]);
+    // delete polyArr[1];
+
     int perim1 = round(polyArr[0]->perimeter());
     int perim2 = round(polyArr[1]->perimeter());
+    // int perim2 = round(polCopy.perimeter());
 
-    if (perim1 == perim2)
+    if (polyArr[0]->isIdentical(*polyArr[1]))
     {
         cout << "equal" << endl <<
         "perimeter:" << perim1 << endl;
@@ -61,8 +65,12 @@ int main()
     }
 
     // Clean up memory
+    // delete polyArr[0];
+
     for (int i = 0; i < NUM_POLYGONS; i++)
+    {
         delete polyArr[i];
+    }
 
     return 0;
 }

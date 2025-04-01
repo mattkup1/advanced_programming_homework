@@ -16,7 +16,12 @@ enter the point values:
 in point two parameter constructor
 in point two parameter constructor
 in point two parameter constructor
+in point default constructor
+in point default constructor
+in point default constructor
+in poly copy constructor
+in destructor
 equal
-perimeter:12
+perimeter:6
 in destructor
 in destructor

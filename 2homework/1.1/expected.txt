@@ -21,7 +21,8 @@ in point default constructor
 in point default constructor
 in poly copy constructor
 in destructor
-equal
-perimeter:12
+not equal
+perimeter:6
+perimeter:6
 in destructor
 in destructor
