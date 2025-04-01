@@ -39,8 +39,8 @@ int main()
         { 
             // Take input in the form "(x,y)"
             cin >> _ >> x >> _ >> y >> _;
-            Point pnt(x, y);
-            p.setPoint(pnt, i);
+            // Point pnt(x, y);
+            p.setPoint(Point(x, y), i);
         }
 
         polyArr[i] = p;
