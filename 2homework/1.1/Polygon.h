@@ -32,7 +32,7 @@ public:
 
     void setPoint(const Point, int index);
 
-    float primeter() const;
+    float perimeter() const;
 
     bool isIdentical(const Polygon) const;
 };

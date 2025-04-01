@@ -7,7 +7,6 @@ enter the point values:
 in point two parameter constructor
 in point two parameter constructor
 in point two parameter constructor
-in destructor
 enter number of points:
 in point default constructor
 in point default constructor
@@ -17,7 +16,7 @@ enter the point values:
 in point two parameter constructor
 in point two parameter constructor
 in point two parameter constructor
-in destructor
 equal
-primeter: -2147483648
-free(): double free detected in tcache 2
+perimeter:12
+in destructor
+in destructor

@@ -25,13 +25,15 @@ Polygon::Polygon(Polygon &p)
 {
     this->numPoints = p.getNumPoints();
     this->points = p.getPoints();
+
+    cout << "in poly copy constructor" << endl;
 }
 
 
 // Destructor
 Polygon::~Polygon()
 {
-    delete this->points;
+    delete [] this->points;
     cout << "in destructor" << endl;
 }
 
@@ -67,7 +69,7 @@ void Polygon::setPoint(const Point p, int index)
 
 // Calculate the primeter
 // The distance between each 2 points in the Polygon
-float Polygon::primeter() const
+float Polygon::perimeter() const
 {
     float prim = 0;
     for (int i = 0; i < this->numPoints - 1; i++)
@@ -75,7 +77,7 @@ float Polygon::primeter() const
         prim += this->points[i].distance(this->points[i + 1]);
     }
     // Add the distance between the last and first point
-    prim += this->points[this->numPoints].distance(this->points[0]);
+    prim += this->points[this->numPoints - 1].distance(this->points[0]);
 
     return prim;
 }

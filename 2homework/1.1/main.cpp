@@ -17,7 +17,7 @@ using namespace std;
 
 int main()
 {
-    Polygon polyArr[NUM_POLYGONS];
+    Polygon* polyArr[NUM_POLYGONS];  // Array of Polygon pointers
     int userNumPoints;
 
     for (int i = 0; i < NUM_POLYGONS; i++)
@@ -26,44 +26,43 @@ int main()
         cin >> userNumPoints;
     
         if (userNumPoints <= 0)
+        {
             cout << "ERROR" << endl;
-    
-        Polygon p(userNumPoints);
-        
-        cout << "enter the point values:" << endl;
-    
-        char _;
-        int x, y;
-    
-        for (int i = 0; i < userNumPoints; i ++)
-        { 
-            // Take input in the form "(x,y)"
-            cin >> _ >> x >> _ >> y >> _;
-            // Point pnt(x, y);
-            p.setPoint(Point(x, y), i);
+            continue;
         }
 
-        polyArr[i] = p;
+        polyArr[i] = new Polygon(userNumPoints); // Allocate on heap
+        
+        cout << "enter the point values:" << endl;
+
+        char _;
+        int x, y;
+
+        for (int j = 0; j < userNumPoints; j++)
+        { 
+            cin >> _ >> x >> _ >> y >> _;
+            polyArr[i]->setPoint(Point(x, y), j);
+        }
     }
 
+    int perim1 = round(polyArr[0]->perimeter());
+    int perim2 = round(polyArr[1]->perimeter());
 
-    int prim1 = round(polyArr[0].primeter());
-    int prim2 = round(polyArr[1].primeter());
-
-    if (prim1 == prim2)
+    if (perim1 == perim2)
     {
         cout << "equal" << endl <<
-        "primeter: " << prim1 << endl;
+        "perimeter:" << perim1 << endl;
     }
     else 
     {
         cout << "not equal" << endl << 
-        "primeter: " << prim1 << endl << 
-        "primeter: " << prim2 << endl;
+        "perimeter:" << perim1 << endl << 
+        "perimeter:" << perim2 << endl;
     }
 
+    // Clean up memory
     for (int i = 0; i < NUM_POLYGONS; i++)
-        polyArr[i].~Polygon();
+        delete polyArr[i];
 
     return 0;
 }
