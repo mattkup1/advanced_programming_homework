@@ -4,60 +4,53 @@
 
 using namespace std;
 
-
-// Default Constructor
+// Default constructor: initializes an empty polygon with zero points
 Polygon::Polygon() : points(nullptr), numPoints(0) {}
 
-// Constructor (with parameters)
-Polygon::Polygon(int n)
+// Parameterized constructor: initializes polygon with 'n' points
+// Dynamically allocates array for 'n' Point objects
+Polygon::Polygon(int n) : numPoints(n), points(new Point[n])
 {
-    if (n > 0)
-    {
-        this->numPoints = n;
-        this->points = new Point[n];
-
-        cout << "in poly one parameter constructor" << endl;
-    }
+    cout << "in poly one parameter constructor" << endl;
 }
 
-// Copy Constructor
-Polygon::Polygon(Polygon &p)
+// Copy constructor: creates a deep copy of another Polygon object
+// Copies the number of points and uses getPoints() to deep copy the array
+Polygon::Polygon(Polygon &src) :
+    numPoints(src.getNumPoints()), points(src.getPoints())
 {
-    this->numPoints = p.getNumPoints();
-
-    this->points = p.getPoints();
-
     cout << "in poly copy constructor" << endl;
 }
 
-
-// Destructor
+// Destructor: deallocates the dynamically allocated array of points
 Polygon::~Polygon()
-{
+{   
     delete [] this->points;
     cout << "in destructor" << endl;
 }
 
-
-// Getter
+// Getter: returns reference to the number of points in the polygon
 const int& Polygon::getNumPoints() const
 {
     return this->numPoints;
 }
 
-
-// Points Getter
+// Getter: returns a deep copy of the points array
+// Helper function for copy ctor
+// Memory is eventually deleted via destructor
 Point* Polygon::getPoints() const
 {
     int n = this->getNumPoints();
     Point* newArr = new Point[n];
+    // Copy each point individually into new array
     for (int i = 0; i < n; i++)
         newArr[i] = this->points[i];
     
     return newArr;
 }
 
-
+// Sets the coordinates of a point at the given index in the polygon
+// Performs bounds check to ensure valid index
 void Polygon::setPoint(const Point p, int index)
 {
     if (index >= 0 && index < this->numPoints)
@@ -67,40 +60,44 @@ void Polygon::setPoint(const Point p, int index)
     }
 }
 
-
-// Calculate the primeter
-// The distance between each 2 points in the Polygon
+// Computes the perimeter by summing distances between consecutive points
+// Also adds distance between last and first point to close the polygon
 double Polygon::perimeter() const
 {
     double prim = 0;
+    // Sum distances between each consecutive pair of points
     for (int i = 0; i < this->numPoints - 1; i++)
     {
         prim += this->points[i].distance(this->points[i + 1]);
     }
-    // Add the distance between the last and first point
+    // Add the distance from last to first Point to complete the loop
     prim += this->points[this->numPoints - 1].distance(this->points[0]);
 
     return prim;
 }
 
-
-// Check if the calling polygon is identical to the argument polygon
-bool Polygon::isIdentical(const Polygon p) const
+// Checks whether caller polygon and callee contain the same set of points
+// Regardless to order
+bool Polygon::isIdentical(const Polygon src) const
 {
-    int pNumPoints = p.getNumPoints();
+    int srcNumPoints = src.getNumPoints();
 
-    if (this->numPoints != pNumPoints)
+    if (this->numPoints != srcNumPoints)
         return false;
     
     bool found = false;
+    // Check each point in this polygon
     for (int i = 0; i < this->numPoints; i ++)
     {
         found = false;
-        for (int j = 0; j < pNumPoints; j ++)
+        // Compare against all points in source polygon
+        for (int j = 0; j < srcNumPoints; j ++)
         {
-            if (this->points[i].isEqual(p.points[j]))
+            // If a match is found, mark it as found
+            if (this->points[i].isEqual(src.points[j]))
                 found = true;
         }
+        // If no match was found, polygons are not identical
         if (!found) return false;
     }
     return true;

@@ -1,3 +1,11 @@
+/*
+    Name: Matt Kuperwasser 322667270
+    Course: Advanced Programming
+    Homework 2, Question 1
+    Point class header file
+    Definition of the Point class used to represent 2D points.
+*/
+
 #pragma once
 
 #include <iostream>
@@ -5,39 +13,23 @@
 
 using namespace std;
 
+// The Point class encapsulates a 2D point with X and Y coordinates.
+// Provides functionality for comparing points and calculating distance.
 class Point
 {
 private:
-    // X and Y coordinates
-    double x;
-    double y;
+    double x;  // X-coordinate of the point
+    double y;  // Y-coordinate of the point
 
 public:
-    // Constructors:
-    // Default Constructor
-    // Assignes 0 to X and Y as the default value
-    Point();
+    Point();                          // Default constructor: initializes point at origin (0,0)
+    Point(double x, double y);         // Constructor: initializes point with specified X and Y coordinates
+    Point(const Point& src);           // Copy constructor: creates a new Point as a copy of another
 
-    // Constructor (With parameters)
-    Point(double x, double y);
-
-    // Copy Constructor
-    Point(Point&);
-
-    // Methods:
-    // X and Y Setters
-    void setX(double);
-    void setY(double);
-
-    // X and Y Getters
-    const double& getX() const;
-    const double& getY() const;
-
-    // Returns the distance between the calling point
-    // and the argument point
-    double distance(Point&) const;
-
-    // Returns the equality state between the calling point
-    // and the argument point
-    bool isEqual(Point &) const;
+    void setX(double);                 // Sets the X-coordinate value (requires cast due to const member)
+    void setY(double);                 // Sets the Y-coordinate value (requires cast due to const member)
+    const double& getX() const;        // Returns a constant reference to the X-coordinate
+    const double& getY() const;        // Returns a constant reference to the Y-coordinate
+    double distance(Point&) const;     // Calculates and returns the Euclidean distance between this point and another
+    bool isEqual(Point&) const;        // Compares this point with another and returns true if they have the same coordinates
 };
