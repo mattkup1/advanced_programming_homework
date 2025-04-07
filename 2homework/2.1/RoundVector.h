@@ -9,7 +9,7 @@ class RoundVector
 {
 private: 
     const int capacity;
-    int* vec;
+    int* vec = nullptr;
     int head;
     int tail;
 
@@ -29,11 +29,14 @@ public:
     int getTail() const;
 
     // Required methods
-    bool isEmpty() const;
-    bool isFull() const;
-    void clear();
-    void addNext(int);
-    int removeFirst();
-    int firstValue() const;
-    void print() const;
+    // Getters
+    bool isEmpty() const;       // Returns whether caller has no values
+    bool isFull() const;        // Returns whether caller is full
+    int firstValue() const;     // Returns vector[head] value if not empty
+    // Setters                
+    void clear();               // Sets head and tail to 0
+    void addNext(int);          // Adds an element to the vector if not full                    
+    int removeFirst();          // Removes vector[head] index if not empty
+    // Print method
+    void print() const; 
 };
