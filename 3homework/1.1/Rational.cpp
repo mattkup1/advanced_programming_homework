@@ -11,6 +11,7 @@ int gcd(int a, int b)
     return (b == 0 ? a : gcd(b, a % b));
 }
 
+                    ////////////////////////// Constructors //////////////////////////////
 // Default ctor
 Rational::Rational(int a, int b)
 {
@@ -38,10 +39,12 @@ Rational::Rational(int a, int b)
     return;
 }
 
+
 // Copy ctor
 Rational::Rational(const Rational& r)
     : mone(r.mone), mechane(r.mechane)
 {}
+
 
 // Move ctor
 Rational::Rational(Rational&& src)
@@ -49,11 +52,11 @@ Rational::Rational(Rational&& src)
 {}
 
 
-// Methods
+                    //////////////////////////// Methods /////////////////////////////
 // Setter for numerator
 void Rational::setMone(int n)
 {
-    mone = n;
+    this->mone = n;
     return;
 }
 
@@ -64,23 +67,9 @@ void Rational::setMone(int n)
 // If zero is given, sets denominator to 1 to prevent division by zero
 void Rational::setMechane(int n)
 {
-    if (n > 0)
-    {
-        mechane = n;
-        return;
-    }
-    else if (n < 0)
-    {
-        mone = -mone;
-        mechane = -n;
-        return;
-    }
-    else if (n == 0) 
-    {
-        mechane = 1;
-    }
-
-    return;
+    // Use the already implemented '=' operator and the default ctor
+    // To handle the different cases (such as n <= 0)
+    *this = Rational(this->mone, n);
 }
 
 
@@ -100,9 +89,10 @@ Rational& Rational::reduce()
     }
     // Reduce the fraction by greatest common denominator
     int gcd_ = gcd(abs(this->mone), abs(this->mechane));
-    this->mone /= gcd_, this->mechane /= gcd_;
-    // Correct the sign
-    if (this->mechane < 0) this->mone = -this->mone, this->mechane = -mechane;
+    // Use the already implemented '=' operator and default ctor
+    // To assign the reduced fraction to caller
+    // And handle special cases (denominator <= 0)
+    *this = Rational(this->mone / gcd_, this->mechane / gcd_);
     // Return reduced fraction
     return *this;
 }   
@@ -122,7 +112,8 @@ void Rational::print() const
 }
  
 
-
+                        //////////////////////// Operators //////////////////////////
+// Assignment = 
 Rational& Rational::operator=(const Rational& src) 
 {
     this->mone = src.getMone();
@@ -130,6 +121,8 @@ Rational& Rational::operator=(const Rational& src)
     return *this;
 }
 
+
+// Addition
 Rational Rational::operator+(const Rational& src)
 {
     const int newMone = (this->mone * src.getMechane()) + (src.getMone() * this->mechane);
@@ -139,6 +132,7 @@ Rational Rational::operator+(const Rational& src)
 }
 
 
+// Addition assignment +=
 Rational& Rational::operator+=(const Rational& src)
 {
     // Add by using the already implemented '+' operator
@@ -147,6 +141,7 @@ Rational& Rational::operator+=(const Rational& src)
 }
 
 
+// Subtraction
 Rational Rational::operator-(const Rational& src)
 {
     // Subtract by adding the negative of src to caller (*this + (-src))
@@ -157,6 +152,7 @@ Rational Rational::operator-(const Rational& src)
 }
 
 
+// Subtraction assignment -=
 Rational& Rational::operator-=(const Rational& src)
 {
     // Subtract by using the already implemented '-' operator
@@ -165,6 +161,7 @@ Rational& Rational::operator-=(const Rational& src)
 }
 
 
+// Multiplication *
 Rational Rational::operator*(const Rational& src)
 {
     Rational result(this->mone * src.getMone(), this->mechane * src.getMechane());
@@ -172,58 +169,74 @@ Rational Rational::operator*(const Rational& src)
 }
 
 
+// Multiplication assignment *=
 Rational& Rational::operator*=(const Rational& src)
 {
+    // Use already implemented '*' operator
     *this = *this * src;
     return *this;
 }
 
 
+// Devision /
 Rational Rational::operator/(const Rational& src)
 {
+    // Use already implemented '*' operator
     Rational result(this->mone * src.getMechane(), this->mechane * src.getMone());
     return result.reduce();
 }
 
 
+// Devision assignment /=
 Rational& Rational::operator/=(const Rational& src)
 {
+    // Use already implemented '/' operator
     *this = *this / src;
     return *this;
 }
 
+
 // ++ Rational
 Rational& Rational::operator++()
 {
+    // Use already implemented '+=' operator
     this->mone += this->mechane;
     return this->reduce();
 }
 
+
 // Rational ++
 Rational Rational::operator++(int dummy)
 {
+    // Use already implemented left side '++' operator
     Rational tmp(*this);
     ++*this;
     return tmp;
 }
 
+
 // -- Rational
 Rational& Rational::operator--()
 {
+    // Use already implemented '-=' operator
     this->mone -= this->mechane;
     return this->reduce();
 }
 
+
 // Rational --
 Rational Rational::operator--(int dummy)
 {
+    // Use already implemented left side '--' operator
     Rational tmp(*this);
     --*this;
     return tmp;
 }
 
 
-// Comparison
+                        ////////////////////////// Comparison /////////////////////////////
+// Equality ==
+// Compares reduced rationals
 bool Rational::operator==(const Rational& r) const
 {
     Rational a(this->getMone(), this->getMechane()), b(r.getMone(), r.getMechane());
@@ -232,34 +245,45 @@ bool Rational::operator==(const Rational& r) const
 }
 
 
+// Not Equal !=
 bool Rational::operator!=(const Rational& r) const 
 {
+    // Use already implemented '==' operator
     return !(*this == r);
 }
 
 
+// Less than <
 bool Rational::operator<(const Rational& r) const 
 {
     // Use constructor in order to get normalized and reduced rationals for comparison
     Rational a(this->getMone(), this->getMechane());
     Rational b(r.getMone(), r.getMechane());
     
+    // Return equality state upon multiplying each numerator by opponents denominator
+    // For common denominator
     return (a.getMone() * b.getMechane() < b.getMone() * a.getMechane());
 }
 
 
+// From this point on, All further comparison operators can be implemented by
+// Use of 2 of the above operators (==, <) or (!=, <)
+
+// Less than or equal to <=
 bool Rational::operator<=(const Rational& r) const 
 {
     return (*this < r || *this == r);
 }
 
 
+// Greater then >
 bool Rational::operator>(const Rational& r) const
 {
     return !(*this <= r);
 }
 
 
+// Greater than or equal to >=
 bool Rational::operator>=(const Rational& r) const 
 {
     return !(*this < r);
