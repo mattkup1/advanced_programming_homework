@@ -141,6 +141,7 @@ Rational Rational::operator+(const Rational& src)
 
 Rational& Rational::operator+=(const Rational& src)
 {
+    // Add by using the already implemented '+' operator
     *this = *this + src;
     return *this;
 }
@@ -148,15 +149,17 @@ Rational& Rational::operator+=(const Rational& src)
 
 Rational Rational::operator-(const Rational& src)
 {
-    const int newMone = (this->mone * src.getMechane()) - (src.getMone() * this->mechane);
-    const int newMechane = this->mechane * src.getMechane();
-    Rational result(newMone, newMechane);
-    return result.reduce();
+    // Subtract by adding the negative of src to caller (*this + (-src))
+    // Use the already implemented '+=' assignment operator
+    Rational result(src.getMone(), -src.getMechane());
+    result += *this;
+    return result;
 }
 
 
 Rational& Rational::operator-=(const Rational& src)
 {
+    // Subtract by using the already implemented '-' operator
     *this = *this - src;
     return *this;
 }
