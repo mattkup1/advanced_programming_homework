@@ -18,13 +18,11 @@ Rational::Rational(int a, int b)
     {
         mone = a;
         mechane = b;
-        this->reduce();
     }
     else if (b < 0)
     {
         mone = -a;
         mechane = -b;
-        this->reduce();
     }
     else if (b == 0) 
     { 
@@ -56,7 +54,6 @@ Rational::Rational(Rational&& src)
 void Rational::setMone(int n)
 {
     mone = n;
-    this->reduce();
     return;
 }
 
@@ -70,14 +67,12 @@ void Rational::setMechane(int n)
     if (n > 0)
     {
         mechane = n;
-        this->reduce();
         return;
     }
     else if (n < 0)
     {
         mone = -mone;
         mechane = -n;
-        this->reduce();
         return;
     }
     else if (n == 0) 
@@ -118,11 +113,11 @@ void Rational::print() const
 {
     if (this->mechane == 1)
     {
-        cout << this->mone << endl;
+        cout << this->mone;
         return;
     }
 
-    cout << this->mone << "/" << this->mechane << endl;
+    cout << this->mone << "/" << this->mechane;
     return;
 }
  
@@ -162,7 +157,7 @@ Rational Rational::operator-(const Rational& src)
 
 Rational& Rational::operator-=(const Rational& src)
 {
-    *this = *this + src;
+    *this = *this - src;
     return *this;
 }
 

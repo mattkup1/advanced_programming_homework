@@ -31,6 +31,7 @@ int main()
 			cout << "before operation y is: ";
 			r1.print();
 			r3 = ++r1;
+			cout << endl;/////
 			cout << "after operation x is: ";
 			r3.print();
 			cout << endl << "y is: ";
@@ -41,6 +42,8 @@ int main()
 			cout << "before operation y is: ";
 			r1.print();
 			r3 = r1++;
+			cout << endl;/////
+
 			cout << "after operation x is: ";
 			r3.print();
 			cout << endl << "y is: ";
@@ -51,6 +54,8 @@ int main()
 			cout << "before operation y is: ";
 			r1.print();
 			r3 = --r1;
+			cout << endl;/////
+
 			cout << "after operation x is: ";
 			r3.print();
 			cout << endl << "y is: ";
@@ -61,6 +66,8 @@ int main()
 			cout << "before operation y is: ";
 			r1.print();
 			r3 = r1--;
+			cout << endl;/////
+
 			cout << "after operation x is: ";
 			r3.print();
 			cout << endl << "y is: ";
@@ -102,7 +109,7 @@ int main()
 			r1.print();
 			cout << " += ";
 			r1 += r2;
-			r2.print();	
+			r2.print();
 			cout << " changes r1 to be: ";
 			r1.print();
 			break;
@@ -137,7 +144,7 @@ int main()
 			cout << " ? ";
 			if (r1 > r2)
 				cout << "yes\n";
-			else 
+			else
 				cout << "no\n";
 			break;
 		case LESS_THAN:
@@ -147,7 +154,7 @@ int main()
 			cout << " ? ";
 			if (r1 < r2)
 				cout << "yes\n";
-			else 
+			else
 				cout << "no\n";
 			break;
 		case GREATER_OR_EQUAL:
@@ -157,7 +164,7 @@ int main()
 			cout << " ? ";
 			if (r1 >= r2)
 				cout << "yes\n";
-			else 
+			else
 				cout << "no\n";
 			break;
 		case LESS_OR_EQUAL:
@@ -167,7 +174,7 @@ int main()
 			cout << " ? ";
 			if (r1 <= r2)
 				cout << "yes\n";
-			else 
+			else
 				cout << "no\n";
 			break;
 		case EQUAL:
@@ -177,7 +184,7 @@ int main()
 			cout << " ? ";
 			if (r1 == r2)
 				cout << "yes\n";
-			else 
+			else
 				cout << "no\n";
 			break;
 		case NOT_EQUAL:
@@ -187,10 +194,11 @@ int main()
 			cout << " ? ";
 			if (r1 != r2)
 				cout << "yes\n";
-			else 
+			else
 				cout << "no\n";
 			break;
 		}
+		cout << endl;///
 		cout << "enter your choice : " << endl;
 		cin >> op;
 	}
