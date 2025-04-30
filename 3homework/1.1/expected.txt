@@ -1,9 +1,0 @@
- enter your choice:
-enter a rational number:
-enter a rational number:
-1/3 + 2/5 = 11/15
-enter your choice :
-enter a rational number:
-enter a rational number:
-1/6 + 2/6 = 1/2
-enter your choice :
