@@ -5,8 +5,10 @@
 MyDate::MyDate(const int d, const int m, const int y)
     : day(d), month(m), year(y)
 {
+    // Case invalid date
     if (!checkDate(d, m, y))
     {
+        cout << "Error date" << endl;
         this->day = this->month = 1;
         this->year = 1899;
     }
@@ -25,12 +27,14 @@ MyDate::MyDate(MyDate&& src)
 {}
 
 
+// Helper function to compute and return whether the given year is a leap year
 bool leapYear(const int& y)
 {
     return (y % 4 == 0 && y % 100 != 0) || y % 400 == 0;
 }
 
 
+// Helper function to compute and return the amount of days in a given month
 int daysInMonth(const int& m, const int& y)
 {
     // Special case for February
@@ -51,7 +55,7 @@ bool checkDate(const int& d, const int& m, const int& y)
     if (m < 1 || m > 12)
         return false;
     // Validate day
-    if (d <= 0 || d > daysInMonth(m))
+    if (d <= 0 || d > daysInMonth(m, y))
         return false;
 
     return true;
@@ -61,6 +65,7 @@ bool checkDate(const int& d, const int& m, const int& y)
 // Setter
 void MyDate::setDate(const int d, const int m, const int y)
 {
+    // Case invalid date
     if (!checkDate(d, m, y))
         return;
     
@@ -68,6 +73,7 @@ void MyDate::setDate(const int d, const int m, const int y)
 }
 
 
+// Print function
 void MyDate::print() const
 {
     cout << this->day << "/" << this->month << "/" << this->year;
@@ -116,7 +122,7 @@ MyDate MyDate::operator++(int)
 
 
                     ///////////////////////// Comparison /////////////////////////
-// 
+// Equality '=='
 bool MyDate::operator==(const MyDate& d) const
 {
     return (this->day == d.getDay() &&
@@ -125,6 +131,7 @@ bool MyDate::operator==(const MyDate& d) const
 }
 
 
+// Less than '<'
 bool MyDate::operator<(const MyDate& d) const
 {
     if (this->year < d.getYear())
@@ -146,6 +153,7 @@ bool MyDate::operator<(const MyDate& d) const
 }
 
 
+// Greater than '>'
 bool MyDate::operator>(const MyDate& d) const
 {
     return !(*this < d || *this == d);

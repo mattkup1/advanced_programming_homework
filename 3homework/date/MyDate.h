@@ -7,8 +7,12 @@ using namespace std;
 
 const int DAYS_IN[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31} ;
 
+// Helper functions
+// Function to validate given date
 bool checkDate(const int& d, const int& m, const int& y);
+// Function to check if given year is a leap year
 bool leapYear(const int& y);
+// Function that computes and returns the amount of days in the given month
 int daysInMonth(const int& m, const int& y);
 
 class MyDate
