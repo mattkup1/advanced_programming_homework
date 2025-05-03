@@ -67,9 +67,17 @@ void Rational::setMone(int n)
 // If zero is given, sets denominator to 1 to prevent division by zero
 void Rational::setMechane(int n)
 {
-    // Use the already implemented '=' operator and the default ctor
-    // To handle the different cases (such as n <= 0)
-    *this = Rational(this->mone, n);
+    if (n == 0)
+        this->mechane = 1;
+    else if (n < 0) 
+    {
+        this->mone = -this->mone;
+        this->mechane = -n;
+    }  
+    else 
+    {
+        this->mechane = n;
+    }  
 }
 
 
@@ -89,10 +97,12 @@ Rational& Rational::reduce()
     }
     // Reduce the fraction by greatest common denominator
     int gcd_ = gcd(abs(this->mone), abs(this->mechane));
-    // Use the already implemented '=' operator and default ctor
-    // To assign the reduced fraction to caller
-    // And handle special cases (denominator <= 0)
-    *this = Rational(this->mone / gcd_, this->mechane / gcd_);
+    this->mone /= gcd_, this->mechane /= gcd_;
+    if (this->mechane < 0)
+    {
+        this->mone = -this->mone;
+        this->mechane = -this->mechane;
+    }
     // Return reduced fraction
     return *this;
 }   
@@ -116,8 +126,23 @@ void Rational::print() const
 // Assignment = 
 Rational& Rational::operator=(const Rational& src) 
 {
-    this->mone = src.getMone();
-    this->mechane = src.getMechane();
+    if (this != &src)
+    {
+        this->mone = src.getMone();
+        this->mechane = src.getMechane();
+    }
+    return *this;
+}
+
+
+// Move Assignment
+Rational& Rational::operator=(Rational&& src)
+{
+    if (this != &src)
+    {
+        this->mone = src.mone;
+        this->mechane = src.mechane;
+    }
     return *this;
 }
 

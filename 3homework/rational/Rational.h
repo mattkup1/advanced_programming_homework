@@ -34,7 +34,8 @@ public:
      void print() const;
 
      // Operators
-     Rational& operator=(const Rational&);
+     Rational& operator=(const Rational&);   // Assignment
+     Rational& operator=(Rational&&);        // Move Assignment
      Rational operator+(const Rational&);
      Rational& operator+=(const Rational&);
      Rational operator-(const Rational&);

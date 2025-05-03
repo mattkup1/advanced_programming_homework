@@ -43,8 +43,8 @@ public:
     void print() const;
 
     // Operators
-    // Move assignment '='
-    MyDate& operator=(const MyDate&);
+    MyDate& operator=(const MyDate&);   // Assignment
+    MyDate& operator=(MyDate&&);        // Move Assignment
     MyDate& operator++();
     MyDate operator++(int);
 

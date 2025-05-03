@@ -92,6 +92,19 @@ MyDate& MyDate::operator=(const MyDate& src)
 }
 
 
+// Move Assignment
+MyDate& MyDate::operator=(MyDate&& src)
+{
+    if (this != &src)
+    {
+        this->day = src.day;
+        this->month = src.month;
+        this->year = src.year;
+    }
+    return *this;
+}
+
+
 // Left side '++' operator
 MyDate& MyDate::operator++()
 {
