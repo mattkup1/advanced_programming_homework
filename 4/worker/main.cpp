@@ -183,5 +183,116 @@ void Test4()
 
 /*
 EXAMPLE:
+Enter your choice 0-5:
+1
+--- Test 1 --- one Worker operators --
+Empty Worker: 0  0
+Input first worker details, id name salary:
+323 Matt 50
+First Worker: 323 Matt 50
+Worker after bonus: 323 Matt 400.4
+Input second worker details, id name salary:
+989 Jay 30
+Second Worker: 989 Jay 30
+Input worker id: 
+323
+Id of first worker is 323
+Id of second worker is not 323
+Input worker name: 
+Jay
+Name of first worker is not Jay
+Name of second worker is Jay
+--- End Test 1 -------------
+Enter your choice 0-5:
+2
+--- Test 2 --- cout -- cin --
+Input worker details, id name salary. Into file: Test2.txt. press 0 0 0 to end:
+456 Bob 25
+114 Josh 26
+884 Sal 25
+285 Joe 27
+403 Jacob 32
+122 Tiffany 30
+0 0 0
+Output worker list (id name salary). From file: Test2.txt
+456 Bob 25
 
+114 Josh 26
+
+884 Sal 25
+
+285 Joe 27
+
+403 Jacob 32
+
+122 Tiffany 30
+
+Input worker details, id name salary. Into file: Test2.txt. press 0 0 0 to end:
+934 Joel 28
+101 Jeremy 25
+908 Jimi 26
+0 0 0
+Output worker list (id name salary). From file: Test2.txt
+934 Joel 28
+
+101 Jeremy 25
+
+908 Jimi 26
+
+--- End Test 2 -------------
+Enter your choice 0-5:
+3
+--- Test 3 --- operator[] --
+Input worker details, id name salary. Into file: Test3.txt. press 0 0 0 to end:
+402 Karen 25
+775 Jill 29
+803 Daniel 30
+669 Stanley 25
+0 0 0
+Input worker id: 
+803
+803 Daniel 30
+
+Input worker id: 
+775
+775 Jill 29
+
+Input worker name: 
+Stanley
+669 Stanley 25
+
+Input worker name: 
+matt
+matt is not found 
+--- End Test 3 -------------
+Enter your choice 0-5:
+4
+--- Test 4 --- operator+= --
+Input worker details, id name salary. Into file: Test4.txt. press 0 0 0 to end:
+983 Matt 30
+674 Natalie 26
+205 Nate 29
+118 Issac 29
+0 0 0
+Output worker list (id name salary), before bonus. From file: Test4.txt
+983 Matt 30
+
+674 Natalie 26
+
+205 Nate 29
+
+118 Issac 29
+
+Output worker list (id name salary), after bonus. From file: Test4.txt
+983 Matt 1030
+
+674 Natalie 1026
+
+205 Nate 1029
+
+118 Issac 1029
+
+--- End Test 4 -------------
+Enter your choice 0-5:
+0
 */
