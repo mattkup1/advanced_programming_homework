@@ -1,60 +1,56 @@
 #include "WorkersFile.h"
 
 
-bool WorkersFile::openFileForWriting() 
-{
-    iofile.open(fileName, ios::out);
-    if (!iofile.is_open())
-    {
-        cout << "ERROR" << endl;
-        return false;
-    }
-    return true;
-}
-
-
-bool WorkersFile::openFileForReading()
-{
-    iofile.open(fileName, ios::in);
-    if (!iofile.is_open())
-    {
-        cout << "ERROR" << endl;
-        return false;
-    }
-    return true;
-}
-
-
-void WorkersFile::closeFile()
-{
-    if(iofile.is_open())
-        iofile.close();
-}
-
-
 // ctor
 WorkersFile::WorkersFile(const string& s)
 {
+    // Initialize file name
     fileName = s;
+    // Clear file content
     openFileForWriting();
     closeFile();
 }
 
 
-// Get number of workers in file
-int WorkersFile::getNumWorkers()
+// Function to open a file for writing
+// Returns true if file opened successfully and false if not opened
+bool WorkersFile::openFileForWriting() 
 {
-    int count = 0;
-    if (openFileForReading())
+    // Open the file using iofile file stream
+    iofile.open(fileName, ios::out);
+    // Case file not opened
+    if (!iofile.is_open())
     {
-        Worker w;
-        while(iofile >> w)
-        {
-            ++ count;
-        }
-        closeFile();
+        cout << "ERROR" << endl;
+        return false;
     }
-    return count;
+    // Case file opened successfully
+    return true;
+}
+
+
+// Function to open a file for reading
+// Returns true if file opened successfully and false if not opened
+bool WorkersFile::openFileForReading()
+{
+    // Open the file using iofile file stream
+    iofile.open(fileName, ios::in);
+    // Case file not opened
+    if (!iofile.is_open())
+    {
+        cout << "ERROR" << endl;
+        return false;
+    }
+    // Case file opened successfully
+    return true;
+}
+
+
+// Close open file
+void WorkersFile::closeFile()
+{
+    if(iofile.is_open())
+        iofile.close();
 }
 
 

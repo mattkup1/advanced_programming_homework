@@ -18,6 +18,7 @@ public:
     Worker& operator+=(const float raise);
 
     // Friend functions
+    // Comparison
     // Compare id
     friend bool operator==(const Worker&, const int id);
     friend bool operator==(const int id, const Worker&);
