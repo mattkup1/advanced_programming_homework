@@ -13,8 +13,6 @@ private:
     bool openFileForWriting();
     bool openFileForReading();
     void closeFile();
-    // Get number of workers in the file
-    int getNumWorkers();
 
 public:
     // ctor
