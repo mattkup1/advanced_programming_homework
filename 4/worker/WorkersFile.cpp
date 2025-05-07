@@ -117,11 +117,6 @@ Worker WorkersFile::operator[](const string& name)
 
 WorkersFile& WorkersFile::operator+=(const float & raise)
 {
-    // Get number of workers in the file
-    int numWorkers = this->getNumWorkers();
-    // Create a temporary array to store the workers information from the file
-    Worker* tmp = new Worker[numWorkers];
-
     // Copy file content to helper array
     if (openFileForReading())
     {
