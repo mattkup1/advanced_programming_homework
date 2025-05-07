@@ -173,7 +173,6 @@ istream& operator>>(istream& is, WorkersFile& f)
 
         while (true)
         {
-            cout << "Enter worker information (ID Name Salary): " << endl;
             is >> w;
 
             // Stop if worker's ID is 0
