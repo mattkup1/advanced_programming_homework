@@ -2,7 +2,35 @@
 
 #include "Worker.h"
 
-class WordersFile
-{
+#include <fstream>
 
+class WorkersFile
+{
+private:
+    string fileName;
+    fstream iofile;
+
+    bool openFileForWriting();
+    bool openFileForReading();
+    void closeFile();
+    // Get number of workers in the file
+    int getNumWorkers();
+
+public:
+    // ctor
+    WorkersFile(const string&);
+
+    // Operators
+    // Get Worker by id
+    Worker operator[](const int&);
+    // Get worker by name
+    Worker operator[](const string&);
+    // Increase all workers salaries
+    WorkersFile& operator+=(const float&);
+
+    // Friend functions
+    // Input workers information to file
+    friend istream& operator>>(istream&, WorkersFile&);
+    // Print file to terminal
+    friend ostream& operator<<(ostream&, WorkersFile&);
 };

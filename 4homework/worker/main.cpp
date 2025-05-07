@@ -179,3 +179,9 @@ void Test4()
 
 	cout << "--- End Test 4 -------------" << endl;
 }
+
+
+/*
+EXAMPLE:
+
+*/
