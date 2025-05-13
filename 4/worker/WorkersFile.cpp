@@ -81,8 +81,7 @@ Worker WorkersFile::operator[](const int& id)
     }
     // Case no match in file or file failed to open
     // Create and return an empty worker object
-    Worker w;
-    return w;
+    return Worker();
 }
 
 
@@ -110,8 +109,7 @@ Worker WorkersFile::operator[](const string& name)
     
     // Case no match found or file failed to open
     // Create and return an empty Worker object
-    Worker w;
-    return w;
+    return Worker();
 }
 
 
