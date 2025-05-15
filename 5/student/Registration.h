@@ -7,7 +7,9 @@
 class Registration
 {
 private:
-    fstream* fileObj;
+    fstream fileObj;
+    Student readStudent(const int&);
+    void writeStudent(const Student&);
 
 public:
     // ctor
@@ -15,6 +17,11 @@ public:
     // dtor
     ~Registration();
     bool createFile(const string&);
-    Student readStudent(const int&);
-    void writeStudent(const Student&);
+
+    void addStudent();
+    void deleteStudent();
+    void update();
+    bool checkRegistered();
+    void printStudent();
+    void printAll();
 };
