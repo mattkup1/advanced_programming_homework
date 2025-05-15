@@ -8,7 +8,11 @@ class Registration
 {
 private:
     fstream fileObj;
+    // Function to create a binary file and signal success on open
+    bool createFile(const string&);
+    // Funciton that reads and returns a student from the file with the given id argument
     Student readStudent(const int&);
+    // Function to write the argumented student to the file
     void writeStudent(const Student&);
 
 public:
@@ -16,7 +20,6 @@ public:
     Registration(const string&);
     // dtor
     ~Registration();
-    bool createFile(const string&);
 
     void addStudent();
     void deleteStudent();

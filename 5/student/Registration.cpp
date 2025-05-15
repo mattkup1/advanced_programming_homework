@@ -1,6 +1,7 @@
 #include "Registration.h"
 
 
+// Parameterized ctor - 
 Registration::Registration(const string& filename)
 {
     // Open file for reading, In order to check if the file exists
@@ -20,6 +21,7 @@ Registration::Registration(const string& filename)
 }
 
 
+// dtor - Closes the binary file
 Registration::~Registration()
 {
     if (this->fileObj.is_open())
@@ -45,7 +47,12 @@ bool Registration::createFile(const string& filename)
 
 Student Registration::readStudent(const int& id)
 {
-    
+    Student s;
+    this->fileObj.seekg(id * (sizeof(s) - 1),ios::beg);
+    this->fileObj.read((char*)&s, sizeof(s));
+    this->fileObj.clear();
+
+    return s;
 }
 
 
