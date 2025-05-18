@@ -9,12 +9,6 @@ using namespace std;
 
 class Student
 {
-private:
-    int id;
-    char firstName[MAX_NAME_LEN + 1];
-    char lastName[MAX_NAME_LEN + 1];
-    bool courses[NUM_COURSES] = {};
-
 public:
     // Default ctor
     Student();
@@ -29,4 +23,13 @@ public:
 
     friend ostream& operator<<(ostream&, const Student&);
     friend istream& operator>>(istream&, Student&);
+
+    // Helper functions
+    int findStudent(const int& id);
+
+private:
+    int id;
+    char firstName[MAX_NAME_LEN + 1];
+    char lastName[MAX_NAME_LEN + 1];
+    bool courses[NUM_COURSES] = {};
 };
