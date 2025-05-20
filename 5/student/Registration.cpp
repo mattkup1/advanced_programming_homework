@@ -33,7 +33,7 @@ Registration::~Registration()
 
 bool Registration::createFile(const string& filename)
 {
-    this->fileObj.open(filename, ios::binary | ios::in | ios::out);
+    this->fileObj.open(filename, ios::binary | ios::in | ios::out | ios::trunc);
     if (!this->fileObj)
         return false;
     
@@ -51,7 +51,7 @@ bool Registration::createFile(const string& filename)
 Student Registration::readStudent(const int& id)
 {
     Student s;
-    this->fileObj.seekg(id * (sizeof(s) - 1),ios::beg);
+    this->fileObj.seekg((id - 1) * sizeof(s),ios::beg);
     this->fileObj.read((char*)&s, sizeof(s));
     this->fileObj.clear();
 
@@ -76,6 +76,11 @@ void Registration::addStudent()
     cin >> s;
 
     int id = s.getId();
+
+    // Case id out of range - Return
+    if (id <= 0 || id > NUM_STUDENTS)
+        return;
+
     // Case student already exists in the file
     if (findStudent(id))
     {
@@ -107,7 +112,7 @@ void Registration::deleteStudent()
     // Create an empty student object via default Student ctor
     Student s;
     this->fileObj.seekp((tmpId - 1) * sizeof(s));
-    // Wright the empty student object to the file
+    // Write the empty student object to the file
     this->fileObj.write((char*)&s, sizeof(s));
     this->fileObj.clear();
 
@@ -137,11 +142,9 @@ void Registration::update()
     if (courseId > 0 && courseId < 6)
     {
         bool tmpTrue = true;
-        // Decrement course id to match course id index in student object
-        --courseId;
-        // Decrement id to match student's index in file
-        --studentId;
-        this->fileObj.seekp((sizeof(Student) * studentId) + sizeof(int) + sizeof(char[25]) + (sizeof(bool) * courseId));
+        this->fileObj.seekp((studentId - 1) * sizeof(Student) + 
+                            sizeof(int) + sizeof(char[25]) + 
+                            (courseId - 1) * (sizeof(bool)));
         this->fileObj.write((char*)&tmpTrue, sizeof(bool));
         this->fileObj.clear();
     }
@@ -224,5 +227,5 @@ bool Registration::findStudent(const int& id)
     int tmp;
     this->fileObj.read((char*)&tmp, sizeof(tmp));
     fileObj.clear();
-    return tmp == 0 ? false : true;
+    return tmp == id;
 }
