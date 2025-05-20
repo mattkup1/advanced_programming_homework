@@ -62,7 +62,7 @@ Student Registration::readStudent(const int& id)
 void Registration::writeStudent(const Student& s)
 {
     // Write the student at the ID'th index in the file
-    this->fileObj.seekg((s.getId() - 1) * sizeof(Student), ios::beg);
+    this->fileObj.seekp((s.getId() - 1) * sizeof(Student), ios::beg);
     this->fileObj.write((char*)&s, sizeof(s));
     fileObj.clear();
     return;
