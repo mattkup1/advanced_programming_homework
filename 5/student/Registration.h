@@ -14,11 +14,17 @@ public:
     // dtor
     ~Registration();
 
+    // Function to add a student to the file
     void addStudent();
+    // Function to delete a student from the file (Set to empty Student obj)
     void deleteStudent();
+    // Function to update registered courses for a student in the file
     void update();
+    // Function to check course registration state for a student in the file 
     void checkRegistered();
+    // Function to print info of a single student to terminal
     void printStudent();
+    // Function to print all student's info to terminal
     void printAll();
 
     // Helper function

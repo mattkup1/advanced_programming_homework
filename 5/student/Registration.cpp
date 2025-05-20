@@ -104,10 +104,10 @@ void Registration::deleteStudent()
         return;
     }
     // Else - Set index to empty student
-    // Decrement ID to match file index
-    --tmpId;
+    // Create an empty student object via default Student ctor
     Student s;
-    this->fileObj.seekp(sizeof(s) * tmpId);
+    this->fileObj.seekp((tmpId - 1) * sizeof(s));
+    // Wright the empty student object to the file
     this->fileObj.write((char*)&s, sizeof(s));
     this->fileObj.clear();
 
