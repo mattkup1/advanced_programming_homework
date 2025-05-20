@@ -62,7 +62,9 @@ Student Registration::readStudent(const int& id)
 void Registration::writeStudent(const Student& s)
 {
     // Write the student at the ID'th index in the file
-    this->fileObj.write((char*)&s + (s.getId() * sizeof(s)) - 1, sizeof(s));
+    this->fileObj.seekg((s.getId() - 1) * sizeof(Student), ios::beg);
+    this->fileObj.write((char*)&s, sizeof(s));
+    fileObj.clear();
     return;
 }
 
@@ -73,20 +75,13 @@ void Registration::addStudent()
     cout << "enter student's details: " << endl;
     cin >> s;
 
-    bool exists;
-    // Check if student exists in file
-    fileObj.seekg(s.getId() - 1, ios::beg);
-    int tmp_id;
-    // Read only the ID from the binary file
-    fileObj.read((char*)&tmp_id, sizeof(int));
-    if (tmp_id == s.getId())
+    int id = s.getId();
+    // Case student already exists in the file
+    if (findStudent(id))
     {
-        // Case already exists - Print and exit
         cout << "student already exists" << endl;
         return;
     }
-
-    fileObj.clear();
 
     // Case student does not exist in the file, Add to file
     writeStudent(s);
