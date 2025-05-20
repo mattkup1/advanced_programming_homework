@@ -124,30 +124,92 @@ void Registration::deleteStudent()
 void Registration::update()
 {
     // Get student info
+    int studentId;
+    cout << "enter id of student to update: " << endl;
+    cin >> studentId;
 
     // Case student does not exist
-    
-    // Update student fields
+    if (!findStudent(studentId))
+    {
+        cout << "student does not exist" << endl;
+        return;
+    }
+
+    // Get course number to sign student up for
+    int courseId;
+    cout << "enter a course num to register for: " << endl;
+    cin >> courseId;
+    if (courseId > 0 && courseId < 6)
+    {
+        bool tmpTrue = true;
+        // Decrement course id to match course id index in student object
+        --courseId;
+        // Decrement id to match student's index in file
+        --studentId;
+        this->fileObj.seekp((sizeof(Student) * studentId) + sizeof(int) + sizeof(char[25]) + (sizeof(bool) * courseId));
+        this->fileObj.write((char*)&tmpTrue, sizeof(bool));
+        this->fileObj.clear();
+    }
+    return;
 }
 
 
 bool Registration::checkRegistered()
 {
-    // Get info
+    int studentId, courseId;
+    // Get student and course ID
+    cout << "enter student id and course number:" << endl;
+    cin >> studentId >> courseId;
+    // Case student does not exist
+    if (!findStudent(studentId))
+    {
+        cout << "student does not exist" << endl;
+        return;
+    }
+    
+    // Open file for reading
+    this->fileObj.seekg((studentId - 1) * sizeof(studentId) + sizeof(int) +
+                         sizeof(char[25]) + (courseId - 1) * sizeof(bool),
+                        ios::beg);
+    bool signedUp;
+    this->fileObj.read((char*)&signedUp, sizeof(signedUp));
+    
+    // Print registration state
+    cout << "student " << studentId << " is " <<
+            ((signedUp) ? "" : "not ") <<
+            "registered for course " << courseId << endl;
 
-    // Check and update
+    fileObj.clear();
+    return;
 }
 
 
 void Registration::printStudent()
 {
+    int studentId;
+    cout << "enter student id number: " << endl;
+    cin >> studentId;
+    
+    if (!findStudent(studentId))
+    {
+        cout << "student does not exist" << endl;
+        return;
+    }
 
+    Student s;
+
+    this->fileObj.seekg((studentId - 1) * (Student), ios::beg);
+    this->fileObj.read((char*)&s, sizeof(s));
+
+    cout << s;
+
+    return;
 }
 
 
 void Registration::printAll()
 {
-
+    
 }
 
 
