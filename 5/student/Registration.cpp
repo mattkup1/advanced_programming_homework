@@ -201,7 +201,7 @@ void Registration::printStudent()
     this->fileObj.seekg((studentId - 1) * (Student), ios::beg);
     this->fileObj.read((char*)&s, sizeof(s));
 
-    cout << s;
+    cout << s << endl;
 
     return;
 }
@@ -209,7 +209,14 @@ void Registration::printStudent()
 
 void Registration::printAll()
 {
-    
+    this->fileObj.seekg(0, ios::beg);
+    Student s;
+    for (int i = 0; i < NUM_STUDENTS; ++i)
+    {
+        this->fileObj.read((char*)&s, sizeof(s));
+        if (s.getId() != 0)
+            cout << s << endl;
+    }
 }
 
 

@@ -4,6 +4,8 @@
 #include <string>
 #include "Student.h"
 
+const int NUM_STUDENTS = 100;
+
 class Registration
 {
 public:
