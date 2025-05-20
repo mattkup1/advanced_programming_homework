@@ -154,7 +154,7 @@ void Registration::update()
 }
 
 
-bool Registration::checkRegistered()
+void Registration::checkRegistered()
 {
     int studentId, courseId;
     // Get student and course ID
@@ -198,7 +198,7 @@ void Registration::printStudent()
 
     Student s;
 
-    this->fileObj.seekg((studentId - 1) * (Student), ios::beg);
+    this->fileObj.seekg((studentId - 1) * (sizeof(Student)), ios::beg);
     this->fileObj.read((char*)&s, sizeof(s));
 
     cout << s << endl;

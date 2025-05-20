@@ -17,7 +17,7 @@ public:
     void addStudent();
     void deleteStudent();
     void update();
-    bool checkRegistered();
+    void checkRegistered();
     void printStudent();
     void printAll();
 
