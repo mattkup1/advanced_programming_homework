@@ -1,0 +1,52 @@
+enter your choice:
+0 - to end the program
+1 - to register a new student
+2 - to delete a student from the file
+3 - update a student's registration
+4 - check if a student is registered for a course
+5 - print a student's details
+6 - print all of the students' details
+enter student id and course number
+student 22 is registered for course 2
+
+enter your choice:
+0 - to end the program
+1 - to register a new student
+2 - to delete a student from the file
+3 - update a student's registration
+4 - check if a student is registered for a course
+5 - print a student's details
+6 - print all of the students' details
+enter student id and course number
+student 30 is not registered for course 2
+
+enter your choice:
+0 - to end the program
+1 - to register a new student
+2 - to delete a student from the file
+3 - update a student's registration
+4 - check if a student is registered for a course
+5 - print a student's details
+6 - print all of the students' details
+enter student id and course number
+student 33 is not registered for course 5
+
+enter your choice:
+0 - to end the program
+1 - to register a new student
+2 - to delete a student from the file
+3 - update a student's registration
+4 - check if a student is registered for a course
+5 - print a student's details
+6 - print all of the students' details
+enter student id and course number
+student 7 is not registered for course 1
+
+enter your choice:
+0 - to end the program
+1 - to register a new student
+2 - to delete a student from the file
+3 - update a student's registration
+4 - check if a student is registered for a course
+5 - print a student's details
+6 - print all of the students' details

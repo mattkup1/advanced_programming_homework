@@ -103,12 +103,12 @@ void Registration::addStudent()
 void Registration::deleteStudent()
 {
     // Get student's ID
-    cout << "enter id of student to delete: " << endl;
-    int tmpId;
-    cin >> tmpId;
+    cout << "enter id of student to delete " << endl;
+    int id;
+    cin >> id;
 
     // Case student does not exist
-    if (!findStudent(tmpId))
+    if (!findStudent(id))
     {
         cout << "student does not exist" << endl;
         return;
@@ -116,12 +116,12 @@ void Registration::deleteStudent()
     // Else - Set index to empty student
     // Create an empty student object via default Student ctor
     Student s;
-    this->fileObj.seekp((tmpId - 1) * sizeof(s));
+    this->fileObj.seekp((id - 1) * sizeof(s));
     // Write the empty student object to the file
     this->fileObj.write((char*)&s, sizeof(s));
     this->fileObj.clear();
 
-    cout << "deleted" << endl;
+    cout << id << " deleted" << endl;
     return;
 }
 
@@ -148,7 +148,8 @@ void Registration::update()
     {
         bool tmpTrue = true;
         this->fileObj.seekp((studentId - 1) * sizeof(Student) + 
-                            sizeof(int) + sizeof(char[25]) + 
+                            sizeof(int) + 
+                            sizeof(char[2 * (MAX_NAME_LEN + 1)]) + 
                             (courseId - 1) * (sizeof(bool)));
         this->fileObj.write((char*)&tmpTrue, sizeof(bool));
         this->fileObj.clear();
@@ -161,7 +162,7 @@ void Registration::checkRegistered()
 {
     int studentId, courseId;
     // Get student and course ID
-    cout << "enter student id and course number:" << endl;
+    cout << "enter student id and course number " << endl;
     cin >> studentId >> courseId;
     // Case student does not exist
     if (!findStudent(studentId))
@@ -170,11 +171,13 @@ void Registration::checkRegistered()
         return;
     }
     
-    // Open file for reading
+    // Navigate to the course index - in the student object - in the file
     this->fileObj.seekg((studentId - 1) * sizeof(studentId) + sizeof(int) +
-                         sizeof(char[25]) + (courseId - 1) * sizeof(bool),
+                         sizeof(char[2 * (MAX_NAME_LEN + 1)]) +
+                         (courseId - 1) * sizeof(bool),
                         ios::beg);
     bool signedUp;
+    // Open file for reading
     this->fileObj.read((char*)&signedUp, sizeof(signedUp));
     
     // Print registration state
