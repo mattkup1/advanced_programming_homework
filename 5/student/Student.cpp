@@ -65,17 +65,24 @@ ostream& operator<<(ostream& os, const Student& s)
 // Input operator '>>'
 istream& operator>>(istream& is, Student& s)
 {
-    is >> s.id >> s.firstName >> s.lastName;
-    for (int i = 0; i < NUM_COURSES; i ++)
+    char tmpFirstName[25];
+    char tmpLastName[25];
+    // Read id, first and last name
+    is >> s.id >> tmpFirstName >> tmpLastName;
+    // Read registered courses
+    for (int i = 0; i < NUM_COURSES; ++i)
     {
+        // For each ith course, Read 1 for registered and 0 for not registered
         is >> s.courses[i];
+        // Case input is not 1 or 0, Set course state to 0 (not registered)
         if (s.courses[i] != 1 && s.courses[i] != 0)
             s.courses[i] = 0;
     }
 
-    strncpy(s.firstName, s.firstName, MAX_NAME_LEN);
+    // Store corrected length
+    strncpy(s.firstName, tmpFirstName, MAX_NAME_LEN);
     s.firstName[MAX_NAME_LEN] = '\0';
-    strncpy(s.lastName, s.lastName, MAX_NAME_LEN);
+    strncpy(s.lastName, tmpLastName, MAX_NAME_LEN);
     s.lastName[MAX_NAME_LEN] = '\0';
 
     return is;
