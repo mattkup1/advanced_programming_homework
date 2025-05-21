@@ -11,7 +11,7 @@ Registration::Registration(const string& filename)
         // Create the file
         this->createFile(filename);
     else
-        // Case file exists, Close file
+        // Case file exists and is therefor open for reading, Close file
         this->fileObj.close();
 
     // Open the file for reading and writing once file existance is ensured
@@ -19,6 +19,8 @@ Registration::Registration(const string& filename)
     if (!this->fileObj)
         cout << "could not open file" << endl;
     this->fileObj.clear();
+
+    // File is now open for reading and writing
 }
 
 
@@ -39,7 +41,10 @@ bool Registration::createFile(const string& filename)
     
     Student s;
     // Write 100 empty students to file
-    this->fileObj.write((char*)&s, sizeof(s) * 100);
+    for (int i = 0; i < NUM_STUDENTS; ++i)
+    {
+        this->fileObj.write((char*)&s, sizeof(s));
+    }
     // Close the file
     this->fileObj.close();
     this->fileObj.clear();
