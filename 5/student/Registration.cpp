@@ -1,7 +1,7 @@
 #include "Registration.h"
 
 
-// Parameterized ctor - 
+// Parameterized ctor
 Registration::Registration(const string& filename)
 {
     // Open file for reading, In order to check if the file exists
@@ -35,7 +35,7 @@ Registration::~Registration()
 
 bool Registration::createFile(const string& filename)
 {
-    this->fileObj.open(filename, ios::binary | ios::in | ios::out | ios::trunc);
+    this->fileObj.open(filename, ios::binary | ios::out | ios::trunc);
     if (!this->fileObj)
         return false;
     
@@ -45,6 +45,7 @@ bool Registration::createFile(const string& filename)
     {
         this->fileObj.write((char*)&s, sizeof(s));
     }
+
     // Close the file
     this->fileObj.close();
     this->fileObj.clear();
@@ -105,6 +106,7 @@ void Registration::deleteStudent()
     // Get student's ID
     cout << "enter id of student to delete " << endl;
     int id;
+    cin >> ws;
     cin >> id;
 
     // Case student does not exist
@@ -162,14 +164,8 @@ void Registration::checkRegistered()
 {
     int studentId, courseId;
     // Get student and course ID
-    cout << "enter student id and course number " << endl;
+    cout << "enter student id and course number" << endl;
     cin >> studentId >> courseId;
-    // Case student does not exist
-    if (!findStudent(studentId))
-    {
-        cout << "student does not exist" << endl;
-        return;
-    }
     
     // Navigate to the course index - in the student object - in the file
     this->fileObj.seekg((studentId - 1) * sizeof(studentId) + sizeof(int) +
@@ -182,7 +178,7 @@ void Registration::checkRegistered()
     
     // Print registration state
     cout << "student " << studentId << " is " <<
-            ((signedUp) ? "" : "not ") <<
+            ((findStudent(studentId) && signedUp) ? "" : "not ") <<
             "registered for course " << courseId << endl;
 
     fileObj.clear();
