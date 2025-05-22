@@ -7,7 +7,7 @@ Student::Student()
     // Initialize first and last name to ""
     this->firstName[0] = this-> lastName[0] = '\0';
     // Initialize all courses to false
-    for (int i = 0; i < NUM_COURSES; i ++) 
+    for (int i = 0; i < NUM_COURSES; ++i) 
     { 
         this->courses[i] = false; 
     }

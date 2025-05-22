@@ -28,7 +28,12 @@ public:
     void printAll();
 
     // Helper function
+    // Returns true if a student with the given id was found in the file
     bool findStudent(const int& id);
+    // Returns the location of a given student in the file
+    int studentIndex(int studentId) const;
+    // Returns the location of a given course for a given student in the file
+    int courseIndex(int studentId, int courseId) const;
 
 private:
     fstream fileObj;

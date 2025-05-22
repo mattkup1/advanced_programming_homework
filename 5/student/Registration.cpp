@@ -149,10 +149,7 @@ void Registration::update()
     if (courseId > 0 && courseId < 6)
     {
         bool tmpTrue = true;
-        this->fileObj.seekp((studentId - 1) * sizeof(Student) + 
-                            sizeof(int) + 
-                            sizeof(char[2 * (MAX_NAME_LEN + 1)]) + 
-                            (courseId - 1) * (sizeof(bool)));
+        this->fileObj.seekp(courseIndex(studentId, courseId), ios::beg);
         this->fileObj.write((char*)&tmpTrue, sizeof(bool));
         this->fileObj.clear();
     }
@@ -168,10 +165,7 @@ void Registration::checkRegistered()
     cin >> studentId >> courseId;
     
     // Navigate to the course index - in the student object - in the file
-    this->fileObj.seekg((studentId - 1) * sizeof(studentId) + sizeof(int) +
-                         sizeof(char[2 * (MAX_NAME_LEN + 1)]) +
-                         (courseId - 1) * sizeof(bool),
-                        ios::beg);
+    this->fileObj.seekg(courseIndex(studentId, courseId), ios::beg);
     bool signedUp;
     // Open file for reading
     this->fileObj.read((char*)&signedUp, sizeof(signedUp));
@@ -200,7 +194,7 @@ void Registration::printStudent()
 
     Student s;
 
-    this->fileObj.seekg((studentId - 1) * (sizeof(Student)), ios::beg);
+    this->fileObj.seekg(studentIndex(studentId), ios::beg);
     this->fileObj.read((char*)&s, sizeof(s));
 
     cout << s << endl;
@@ -225,11 +219,26 @@ void Registration::printAll()
 // Helper functions
 // Funtction to search for a student in the binary file by ID
 // Returns the students id if found or -1 if not found
-bool Registration::findStudent(const int& id)
+bool Registration::findStudent(const int& studentId)
 {
-    this->fileObj.seekg(sizeof(Student) * (id - 1), ios::beg);
+    this->fileObj.seekg(studentIndex(studentId), ios::beg);
     int tmp;
     this->fileObj.read((char*)&tmp, sizeof(tmp));
     fileObj.clear();
-    return tmp == id;
+    return tmp == studentId;
+}
+
+
+int Registration::studentIndex(int studentId) const
+{
+    return ((studentId - 1) * sizeof(int));
+}
+
+
+int Registration::courseIndex(int studentId, int courseId) const
+{
+    return (studentIndex(studentId)                         // Navigate to the student with the given id
+            + sizeof(int)                           
+            + sizeof(char[2 * (MAX_NAME_LEN + 1)])
+            + (courseId - 1) * sizeof(bool));               // Navigate to the given course number
 }
