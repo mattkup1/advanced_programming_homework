@@ -1,7 +1,7 @@
 #include "Registration.h"
 
 
-// Parameterized ctor
+// ctor
 Registration::Registration(const string& filename)
 {
     // Open file for reading, In order to check if the file exists
@@ -54,10 +54,10 @@ bool Registration::createFile(const string& filename)
 }
 
 
-Student Registration::readStudent(const int& id)
+Student Registration::readStudent(const int& studentId)
 {
     Student s;
-    this->fileObj.seekg((id - 1) * sizeof(s),ios::beg);
+    this->fileObj.seekg(studentIndex(studentId),ios::beg);
     this->fileObj.read((char*)&s, sizeof(s));
     this->fileObj.clear();
 
@@ -105,12 +105,12 @@ void Registration::deleteStudent()
 {
     // Get student's ID
     cout << "enter id of student to delete " << endl;
-    int id;
+    int studentId;
     cin >> ws;
-    cin >> id;
+    cin >> studentId;
 
     // Case student does not exist
-    if (!findStudent(id))
+    if (!findStudent(studentId))
     {
         cout << "student does not exist" << endl;
         return;
@@ -118,12 +118,12 @@ void Registration::deleteStudent()
     // Else - Set index to empty student
     // Create an empty student object via default Student ctor
     Student s;
-    this->fileObj.seekp((id - 1) * sizeof(s));
+    this->fileObj.seekp(studentIndex(studentId), ios::beg);
     // Write the empty student object to the file
     this->fileObj.write((char*)&s, sizeof(s));
     this->fileObj.clear();
 
-    cout << id << " deleted" << endl;
+    cout << studentId << " deleted" << endl;
     return;
 }
 
@@ -222,10 +222,7 @@ void Registration::printAll()
 bool Registration::findStudent(const int& studentId)
 {
     this->fileObj.seekg(studentIndex(studentId), ios::beg);
-    int tmp;
-    this->fileObj.read((char*)&tmp, sizeof(tmp));
-    fileObj.clear();
-    return tmp == studentId;
+    return studentId == readStudent(studentId).getId();
 }
 
 
