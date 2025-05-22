@@ -77,10 +77,12 @@ void Registration::writeStudent(const Student& s)
 
 void Registration::addStudent()
 {
+    // Read student info into a new student object
     Student s;
     cout << "enter student's details: " << endl;
     cin >> s;
 
+    // Store student's id in a variable to avoid calling the getter
     int id = s.getId();
 
     // Case id out of range - Return
@@ -150,7 +152,6 @@ void Registration::update()
     if (courseId > 0 && courseId < 6)
     {
         bool tmpTrue = true;
-        this->fileObj.clear();
         this->fileObj.seekp(courseIndex(studentId, courseId), ios::beg);
         this->fileObj.write((char*)&tmpTrue, sizeof(bool));
         this->fileObj.clear();
@@ -174,7 +175,6 @@ void Registration::checkRegistered()
             << "registered for course " 
             << courseId << endl;
 
-    fileObj.clear();
     return;
 }
 
@@ -193,9 +193,9 @@ void Registration::printStudent()
 
     Student s;
 
-    this->fileObj.clear();
     this->fileObj.seekg(studentIndex(studentId), ios::beg);
     this->fileObj.read((char*)&s, sizeof(s));
+    this->fileObj.clear();
 
     cout << s << endl;
 

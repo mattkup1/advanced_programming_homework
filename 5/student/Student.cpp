@@ -29,7 +29,8 @@ Student::Student(const int& id, const char* fn, const char* ln)
     else
         strncpy(this->lastName, ln, MAX_NAME_LEN);
     
-    for (int i = 0; i < NUM_COURSES; i ++) 
+    // Initialze all courses in courses array to false
+    for (int i = 0; i < NUM_COURSES; ++i) 
     { 
         this->courses[i] = false; 
     }
@@ -39,12 +40,14 @@ Student::Student(const int& id, const char* fn, const char* ln)
 // Operators
 bool Student::operator[](const int& courseId) const
 {
+    // Validate course number
     if (courseId < 1 || courseId > 5)
     {
         cout << "ERROR" << endl;
         return false;
     }
 
+    // Return registration state for given course
     return this->courses[courseId - 1];
 }
 
@@ -52,6 +55,7 @@ bool Student::operator[](const int& courseId) const
 // Output operator '<<'
 ostream& operator<<(ostream& os, const Student& s)
 {
+    // Output student info
     os << s.id << " " << s.firstName << " " << s.lastName << " ";
     // Output only the course to which the student is signed up for
     for (int i = 0; i < NUM_COURSES; i++)
@@ -66,6 +70,7 @@ ostream& operator<<(ostream& os, const Student& s)
 // Input operator '>>'
 istream& operator>>(istream& is, Student& s)
 {
+    // Create temporary arrays to store unvalidated first and last name
     char tmpFirstName[25];
     char tmpLastName[25];
     // Read id, first and last name
@@ -80,7 +85,7 @@ istream& operator>>(istream& is, Student& s)
             s.courses[i] = 0;
     }
 
-    // Store corrected length
+    // Store corrected length of first and last name in student object
     strncpy(s.firstName, tmpFirstName, MAX_NAME_LEN);
     s.firstName[MAX_NAME_LEN] = '\0';
     strncpy(s.lastName, tmpLastName, MAX_NAME_LEN);

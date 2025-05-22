@@ -20,8 +20,9 @@ public:
 
     // Operators
     bool operator[](const int& courseId) const;
-
+    // Output operator <<
     friend ostream& operator<<(ostream&, const Student&);
+    // Input operator >>
     friend istream& operator>>(istream&, Student&);
 
     // Helper functions
