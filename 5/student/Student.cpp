@@ -36,28 +36,6 @@ Student::Student(const int& id, const char* fn, const char* ln)
 }
 
 
-// Copy ctor
-Student::Student(const Student& src)
-{
-    this->id = src.getId();
-    strcpy(this->firstName, src.firstName);
-    strcpy(this->lastName, src.lastName);
-    for (int i = 0; i < NUM_COURSES; ++i)
-        this->courses[i] = src.courses[i];
-}
-
-
-// Move ctor
-Student::Student(Student&& src)
-{
-    this->id = src.getId();
-    strcpy(this->firstName, src.firstName);
-    strcpy(this->lastName, src.lastName);
-    for (int i = 0; i < NUM_COURSES; ++i)
-        this->courses[i] = src.courses[i];
-}
-
-
 // Operators
 bool Student::operator[](const int& courseId) const
 {

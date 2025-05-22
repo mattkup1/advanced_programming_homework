@@ -150,6 +150,7 @@ void Registration::update()
     if (courseId > 0 && courseId < 6)
     {
         bool tmpTrue = true;
+        this->fileObj.clear();
         this->fileObj.seekp(courseIndex(studentId, courseId), ios::beg);
         this->fileObj.write((char*)&tmpTrue, sizeof(bool));
         this->fileObj.clear();
@@ -192,6 +193,7 @@ void Registration::printStudent()
 
     Student s;
 
+    this->fileObj.clear();
     this->fileObj.seekg(studentIndex(studentId), ios::beg);
     this->fileObj.read((char*)&s, sizeof(s));
 
@@ -211,6 +213,7 @@ void Registration::printAll()
         if (s.getId() != 0)
             cout << s << endl;
     }
+    this->fileObj.clear();
 }
 
 
@@ -225,7 +228,7 @@ bool Registration::findStudent(const int& studentId)
 
 int Registration::studentIndex(int studentId) const
 {
-    return ((studentId - 1) * sizeof(int));
+    return ((studentId - 1) * sizeof(Student));
 }
 
 
@@ -233,7 +236,6 @@ int Registration::courseIndex(int studentId, int courseId) const
 {
     return (studentIndex(studentId)                         // Navigate to the student with the given id
             + sizeof(int)                           
-            + sizeof(char[MAX_NAME_LEN + 1])
-            + sizeof(char[MAX_NAME_LEN + 1])
+            + (2 * (MAX_NAME_LEN + 1) * sizeof(char))
             + (courseId - 1) * sizeof(bool));               // Navigate to the given course number
 }
