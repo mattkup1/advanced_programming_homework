@@ -133,6 +133,7 @@ void Registration::update()
     // Get student info
     int studentId;
     cout << "enter id of student to update: " << endl;
+    cin >> ws;
     cin >> studentId;
 
     // Case student does not exist
@@ -164,16 +165,13 @@ void Registration::checkRegistered()
     cout << "enter student id and course number" << endl;
     cin >> studentId >> courseId;
     
-    // Navigate to the course index - in the student object - in the file
-    this->fileObj.seekg(courseIndex(studentId, courseId), ios::beg);
-    bool signedUp;
-    // Open file for reading
-    this->fileObj.read((char*)&signedUp, sizeof(signedUp));
-    
     // Print registration state
-    cout << "student " << studentId << " is " <<
-            ((findStudent(studentId) && signedUp) ? "" : "not ") <<
-            "registered for course " << courseId << endl;
+    cout << "student " << studentId << " is "
+            << ((findStudent(studentId) 
+                && readStudent(studentId)[courseId]) 
+                ? "" : "not ")
+            << "registered for course " 
+            << courseId << endl;
 
     fileObj.clear();
     return;
@@ -221,7 +219,6 @@ void Registration::printAll()
 // Returns the students id if found or -1 if not found
 bool Registration::findStudent(const int& studentId)
 {
-    this->fileObj.seekg(studentIndex(studentId), ios::beg);
     return studentId == readStudent(studentId).getId();
 }
 
@@ -236,6 +233,7 @@ int Registration::courseIndex(int studentId, int courseId) const
 {
     return (studentIndex(studentId)                         // Navigate to the student with the given id
             + sizeof(int)                           
-            + sizeof(char[2 * (MAX_NAME_LEN + 1)])
+            + sizeof(char[MAX_NAME_LEN + 1])
+            + sizeof(char[MAX_NAME_LEN + 1])
             + (courseId - 1) * sizeof(bool));               // Navigate to the given course number
 }

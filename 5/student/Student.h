@@ -14,6 +14,10 @@ public:
     Student();
     // Assignment ctor
     Student(const int& id, const char* fn, const char* ln);
+    // Copy ctor
+    Student(const Student&);
+    // Move ctor
+    Student(Student&&);
 
     // Methods
     int getId() const { return this->id; }
