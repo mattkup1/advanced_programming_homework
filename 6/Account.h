@@ -26,7 +26,7 @@ public:
 
     // Methods
     // Getters
-    unsigned getAccNum() const  { return this->accountNumber; }
+    unsigned getAccountNumber() const  { return this->accountNumber; }
     unsigned getCode() const    { return this->code;          }
     float    getBalance() const { return this->balance;       }
     string   getEmail() const   { return this->email;         }
@@ -36,12 +36,9 @@ public:
     // Function to deposit money to account
     void deposit(const int&);
 
-    // Static counters
-    static unsigned sumWithdraw;
-    static unsigned sumDeposit;
-
-    unsigned getSumWithdraw() const { return sumWithdraw; }
-    unsigned getSumDeposit()  const { return sumDeposit;  }
+    // Getters for static withdrawls and deposits counters
+    static unsigned getSumWithdraw() { return sumWithdraw; }
+    static unsigned getSumDeposit()  { return sumDeposit;  }
 
 
     // Input >> operator
@@ -52,4 +49,8 @@ private:
     unsigned code;
     float balance;
     string email;
+
+    // Static counters
+    static unsigned sumWithdraw;
+    static unsigned sumDeposit;
 };
