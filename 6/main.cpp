@@ -32,8 +32,16 @@ int main()
     Clock present;
 
     cout << "enter current time";
-    cin >> present;
-    cout << "current time is: " << present << endl;
+    try
+    {
+        cin >> present;
+        cout << "current time is: " << present << endl;
+    }
+    catch(const char* exception)
+    {
+        cout << exception << endl;
+        return 0;
+    }
 
     Account bank[SIZE];
     cout << "enter account number, code and email for " << SIZE << " accounts:\n";

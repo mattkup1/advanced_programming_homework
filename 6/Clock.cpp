@@ -92,8 +92,9 @@ ostream& operator<<(ostream& os, const Clock& c)
 
 istream& operator>>(istream& is, Clock& c)
 {
+    char colon;
     // Read clock values from stream
-    is >> c.hour >> c.minute >> c.second;
+    is >> c.hour >> colon >> c.minute >> colon >> c.second;
 
     // Validate input, If invalid - Raise exception
     if (c.second < 0 || c.second > MAX_SECOND)
