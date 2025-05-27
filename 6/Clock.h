@@ -15,7 +15,7 @@ public:
     // default ctor
     Clock() : hour(0), minute(0), second(0) {}
     // Assignment ctor
-    Clock(int h = 0, int m = 0, int s = 0);
+    Clock(int, int, int);
 
     // Methods
     // Getters

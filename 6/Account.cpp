@@ -8,18 +8,29 @@ Account::Account(int accNum, int code, float balance_, string email_)
     for (int i = 0; i < len; i ++)
         email_[i] = tolower(i);
 
-    // Case invalid (negative) account number
-    if (accNum < 0)
-        throw ACC_NUM_EX;
-    // Case invalid (not 4 digits) secret code
-    if (code < MIN_CODE || code > MAX_CODE)
-        throw ACC_CODE_EX;
-    // Case email address missing "@"
-    if (email_.find("@", 1) < 1)
-        throw EMAIL_AT_EX;
-    // Case invalid domain (not .com or .co.il)
-    if (email_.find(".com", 2) < 1 || email_.find("co.il"))
-        throw DOMAIN_EX;
+    try
+    {
+        // Case invalid (negative) account number
+        if (accNum < 0)
+            throw ACC_NUM_EX;
+        // Case invalid (not 4 digits) secret code
+        if (code < MIN_CODE || code > MAX_CODE)
+            throw ACC_CODE_EX;
+        // Case email address missing "@"
+        if (email_.find("@", 1) < 1)
+            throw EMAIL_AT_EX;
+        // Case invalid domain (not .com or .co.il)
+        if (email_.find(".com", 2) < 1 || email_.find("co.il"))
+            throw DOMAIN_EX;
+    }
+    // Case invalid input - Initialize all fields to default and raise exception
+    catch(const char* error)
+    {
+        this->accountNumber = this->code = this->balance = 0;
+        this->email = "";
+        throw error;
+    }
+    
 
     // Case valid arguments, Assign to object fields.
     this->accountNumber = accNum;
@@ -32,7 +43,7 @@ Account::Account(int accNum, int code, float balance_, string email_)
 // Input >> operator
 istream& operator>>(istream& is, Account& acc)
 {
-
+    // Read account info from stream
     is >>  acc.accountNumber >> acc.code >> acc.email;
 
     try
@@ -46,7 +57,7 @@ istream& operator>>(istream& is, Account& acc)
         if (acc.email.find(".com", 2) < 2 || acc.email.find(".co.il", 2) < 2)
             throw DOMAIN_EX;
     }
-    // Case exception raised
+    // Case invalid input
     catch(const char* error)
     {
         // Set all fields to default empty values
