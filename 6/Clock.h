@@ -12,6 +12,11 @@ extern const char* SECOND_ERROR;
 
 class Clock
 {
+private:
+    int hour = 0;
+    int minute = 0;
+    int second = 0;
+    
 public:
     // default ctor
     Clock() : hour(0), minute(0), second(0) {}
@@ -35,9 +40,4 @@ public:
     friend ostream& operator<<(ostream&, const Clock&);
     // Input >> operator
     friend istream& operator>>(istream&, Clock&);
-
-private:
-    int hour = 0;
-    int minute = 0;
-    int second = 0;
 };

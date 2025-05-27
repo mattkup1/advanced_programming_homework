@@ -18,6 +18,16 @@ extern const char* CREDIT_LIMIT_EX;
 
 class Account
 {
+private:
+    unsigned accountNumber;
+    unsigned code;
+    float balance;
+    string email;
+
+    // Static counters
+    static unsigned sumWithdraw;
+    static unsigned sumDeposit;
+    
 public:
     // Default ctor
     Account() : accountNumber(0), code(0), balance(0.0), email("") {}
@@ -43,14 +53,4 @@ public:
 
     // Input >> operator
     friend istream& operator>>(istream&, Account&);
-
-private:
-    unsigned accountNumber;
-    unsigned code;
-    float balance;
-    string email;
-
-    // Static counters
-    static unsigned sumWithdraw;
-    static unsigned sumDeposit;
 };
