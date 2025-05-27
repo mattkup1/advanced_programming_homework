@@ -21,6 +21,8 @@ ACTION menu();
 void printTransaction(Account a, ACTION ac, Clock& c);
 void getBalance(Account* bank, int amount, Clock& c);
 void cashDeposit(Account* bank, int amount, Clock& c);
+// Helper function to get and validate account information from user
+unsigned getAccInfo(Account* bank, int numAccounts, ACTION ac);
 
 
 int main() 
@@ -54,38 +56,31 @@ int main()
     // While action code != 0
     while (ac) 
     {
-        switch (ac) 
+        try
         {
-            case BALANCE: 
-                try
-                {
+            switch (ac) 
+            {            
+                case BALANCE: 
                     getBalance(bank, SIZE, present);
-                }
-                catch (const char* exception)
-                {
-                    cout << exception << endl;
-                }
-                break;
-                // TODO combine tries to one and a single catch
-            case WITHDRAW:
-                try
-                {
+                    break;
+                case WITHDRAW:
                     cashWithdraw(bank, SIZE, present);
-                }
-                catch(const char* exception)
-                {
-                    cout << exception << endl;
-                }
-                break;
-            case DEPOSIT:
-                cashDeposit(bank, SIZE, present);
-                break;
-            case SUM_DEPOSIT:
-                printTransaction(bank[0], SUM_DEPOSIT, present);
-                break;
-            case SUM_WITHDRAW:
-                printTransaction(bank[0], SUM_WITHDRAW, present);
+                    break;
+                case DEPOSIT:
+                    cashDeposit(bank, SIZE, present);
+                    break;
+                case SUM_DEPOSIT:
+                    printTransaction(bank[0], SUM_DEPOSIT, present);
+                    break;
+                case SUM_WITHDRAW:
+                    printTransaction(bank[0], SUM_WITHDRAW, present);
+            }
         }
+        catch(const char* exception)
+        {
+            cout << exception << endl;
+        }
+        
         // Increment time by 40 seconds
         present += 40;
         ac = menu();
@@ -115,13 +110,10 @@ void printTransaction(Account a, ACTION ac, Clock& c)
     switch (ac) 
     {
         case BALANCE:
-            cout << "account #: " << a.getAccountNumber() << "\t";
-            cout << "new balance: " << a.getBalance() << endl;
-            break;
         case DEPOSIT:
         case WITHDRAW: 
             cout << "account #: " << a.getAccountNumber() << "\t";
-            cout << "new balance: " << a.getBalance() << endl;
+            cout << "balance: " << a.getBalance() << endl;
             break;
         case SUM_DEPOSIT:
             cout << "sum of all deposits: " << Account::getSumDeposit() << endl;
@@ -135,62 +127,84 @@ void printTransaction(Account a, ACTION ac, Clock& c)
 
 void getBalance(Account* bank, int numAccounts, Clock& c) 
 {
-    //TODO: read account number and code
-    int accNum, code;
-
-    cout << "please enter the account number: " << endl;
-    cin >> accNum;
-    cout << "please enter the code: " << endl;
-    cin >> code;
-    
-    // Search for account 
-    for (int i = 0; i <= numAccounts; ++i)
+    try
     {
-        if (accNum == bank[i].getAccountNumber())
-        {
-            if (code == bank[i].getCode())
-                printTransaction(bank[i], BALANCE, c);
-            else
-                throw WRONG_CODE_EX;
-        }
+        unsigned accIndex = getAccInfo(bank, numAccounts, BALANCE);
+        printTransaction(bank[accIndex], BALANCE, c);
     }
-    throw ACC_NOT_FOUND_EX;
+    catch(const char* exception)
+    {
+        throw exception;
+    }
 }
 
 
 void cashDeposit(Account* bank, int numAccounts, Clock& c)
 {
-    // CHECK THIS CODE
     try
     {
-        int accNum, code, amount;
-        cout << "please enter account number: " << endl;
-        cin >> accNum;
-        cout << "please enter the code: " << endl;
-        cin >> code;
-        cout << "enter the amount of the deposit: " << endl;
-        cin >> amount;
+        unsigned accIndex = getAccInfo(bank, numAccounts, DEPOSIT);
+        printTransaction(bank[accIndex], DEPOSIT, c);
     }
-    catch(const char* error)
+    catch(const char* exception)
     {
-        cout << error << endl;
+        throw exception;
     }
+} 
 
-    // TODO: Case error - throw exception
-
-    // TODO: Update balance accordingly
-
-    // TODO: Call printTransaction()
-}
 
 
 void cashWithdraw(Account* bank, int numAccounts, Clock& c)
 {
-    // TODO: read account number, code and amount
+    try
+    {
+        unsigned accIndex = getAccInfo(bank, numAccounts, WITHDRAW);
+        printTransaction(bank[accIndex], WITHDRAW, c);
+    }
+    catch(const char* exception)
+    {
+        throw exception;
+    }
+}
 
-    // TODO: Case error - throw exception
 
-    // TODO: Update balance accordingly
+unsigned getAccInfo(Account* bank, int numAccounts, ACTION ac)
+{
+    int accNum, code;
+    float amount;
 
-    // TODO: Call printTransaction()
+    // Get account details
+    cout << "please enter the account number: " << endl;
+    cin >> accNum;
+    cout << "please enter the code: " << endl;
+    cin >> code;
+    // Case deposit / withdraw - Get amount
+    if (ac == DEPOSIT || ac == WITHDRAW)
+    {
+        cout << "enter the amount of" << 
+        (ac == DEPOSIT ? "the deposit: " : "money to withdraw") << endl;
+        cin >> amount;
+    }
+    
+    // Validate input
+    // Search for account 
+    for (unsigned i = 0; i <= numAccounts; ++i)
+    {
+        // Case account exists in bank
+        if (accNum == bank[i].getAccountNumber())
+        {
+            // Case correct account code
+            if (code == bank[i].getCode())
+            {
+                // Call function based on action
+                if (ac == BALANCE) return i;
+                else ac == DEPOSIT ? bank[i].deposit(amount) : bank[i].withdraw(amount);
+                return i;
+            }
+            // Case worng code - Raise exception
+            throw WRONG_CODE_EX;
+        }
+    }
+    // Case account number not found in iterations - Raise exception
+    throw ACC_NOT_FOUND_EX;
 }
