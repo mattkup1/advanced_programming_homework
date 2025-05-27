@@ -5,9 +5,10 @@
 using namespace std;
 
 const int MAX_HOUR = 23, MAX_MINUTE = 59, MAX_SECOND = 59;
-const char* HOUR_ERROR = "Invalid time - number of hours is not valid";
-const char* MINUTE_ERROR = "Invalid time - number of minutes is not valid";
-const char* SECOND_ERROR = "Invalid time - number of seconds is not valid";
+
+extern const char* HOUR_ERROR;
+extern const char* MINUTE_ERROR;
+extern const char* SECOND_ERROR;
 
 class Clock
 {

@@ -1,5 +1,6 @@
 #include "Account.h"
 
+
 // Initialize static counters
 unsigned Account::sumWithdraw = 0;
 unsigned Account::sumDeposit = 0;

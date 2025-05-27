@@ -114,6 +114,9 @@ void printTransaction(Account a, ACTION ac, Clock& c)
     cout << c << "\t";
     switch (ac) 
     {
+        // Add exit case to avoid warning when compiling
+        case EXIT:
+            break;
         case BALANCE:
         case DEPOSIT:
         case WITHDRAW: 
