@@ -31,7 +31,7 @@ int main()
     const int SIZE = 10;
     Clock present;
 
-    cout << "enter current time";
+    cout << "enter current time" << endl;
     try
     {
         cin >> present;
@@ -75,12 +75,14 @@ int main()
                     getBalance(bank, SIZE, present);
                     break;
                 case WITHDRAW:
+                    cout << endl << endl;
                     cashWithdraw(bank, SIZE, present);
                     break;
                 case DEPOSIT:
                     cashDeposit(bank, SIZE, present);
                     break;
-                case SUM_DEPOSIT:
+                case SUM_DEPOSIT: 
+                    cout << endl;
                     printTransaction(bank[0], SUM_DEPOSIT, present);
                     break;
                 case SUM_WITHDRAW:
@@ -119,7 +121,7 @@ ACTION menu()
 
 void printTransaction(Account a, ACTION ac, Clock& c) 
 {
-    cout << c << "\t";
+    cout << c << "\t\t";
     switch (ac) 
     {
         // Add exit case to avoid warning when compiling
@@ -190,15 +192,15 @@ unsigned getAccInfo(Account* bank, int numAccounts, ACTION ac)
     float amount;
 
     // Get account details
-    cout << "please enter the account number: " << endl;
+    cout << "please enter account number: " << endl << endl;
     cin >> accNum;
-    cout << "please enter the code: " << endl;
+    cout << "please enter the code: " << endl << endl;
     cin >> code;
     // Case deposit / withdraw - Get amount
     if (ac == DEPOSIT || ac == WITHDRAW)
     {
-        cout << "enter the amount of" << 
-        (ac == DEPOSIT ? "the deposit: " : "money to withdraw") << endl;
+        cout << "enter the amount of " << 
+        (ac == DEPOSIT ? "the deposit: " : "money to withdraw") << endl << endl;
         cin >> amount;
     }
     

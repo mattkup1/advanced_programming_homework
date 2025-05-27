@@ -67,11 +67,11 @@ Clock& Clock::operator+=(int s)
         throw SECOND_ERROR;
     
     // Increment and format second
-    this->second = s % (MAX_SECOND + 1);
+    this->second = (s % (MAX_SECOND + 1));
     // Increment minute without formatting
-    this->minute += s / (MAX_SECOND + 1);
+    this->minute += (s / (MAX_SECOND + 1));
     // Increment hour
-    this->hour += (this->minute / (MAX_MINUTE + 1)) % (MAX_HOUR + 1);
+    this->hour += ((this->minute / (MAX_MINUTE + 1)) % (MAX_HOUR + 1));
     // Format minute
     this->minute %= (MAX_MINUTE + 1);
 
@@ -83,7 +83,7 @@ Clock& Clock::operator+=(int s)
 ostream& operator<<(ostream& os, const Clock& c)
 {
     // Output time in HH:MM:SS format
-    int h = c.getHour(), m = c.getMinute(), s = c.getHour();
+    int h = c.getHour(), m = c.getMinute(), s = c.getSecond();
     return os << (h < 10 ? "0" : "") << h << ":"
               << (m < 10 ? "0" : "") << m << ":"
               << (s < 10 ? "0" : "") << s;

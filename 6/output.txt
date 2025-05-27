@@ -1,0 +1,91 @@
+enter current time
+current time is: 10:08:12
+enter account number, code and email for 10 accounts:
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+please enter account number: 
+
+please enter the code: 
+
+enter the amount of the deposit: 
+
+10:08:12		account #: 234	balance: 5000
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+
+
+please enter account number: 
+
+please enter the code: 
+
+enter the amount of money to withdraw
+
+10:08:40		account #: 234	balance: 4000
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+please enter account number: 
+
+please enter the code: 
+
+10:08:40		account #: 234	balance: 4000
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+please enter account number: 
+
+please enter the code: 
+
+enter the amount of the deposit: 
+
+10:08:40		account #: 345	balance: 2000
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+
+
+please enter account number: 
+
+please enter the code: 
+
+enter the amount of money to withdraw
+
+10:08:40		account #: 345	balance: 1500
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+
+10:08:40		sum of all deposits: 2
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+10:08:40		sum of all withdrawals: 2
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
