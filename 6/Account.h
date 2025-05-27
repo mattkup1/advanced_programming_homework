@@ -8,7 +8,7 @@ const unsigned MIN_CODE = 1000, MAX_CODE = 9999;
 const int CREDIT_LIMIT = -600;
 const unsigned MAX_WITHDRAWL = 2500, MAX_DEPOSIT = 10000;
 
-const char* ACC_NUM_EX        = "ERROR: account nubmer must be positive";
+const char* ACC_NUM_EX        = "ERROR: account number must be positive";
 const char* ACC_CODE_EX       = "ERROR: code must be of 4 digits";
 const char* EMAIL_AT_EX       = "ERROR: email must contain @";
 const char* DOMAIN_EX         = "ERROR: email must end with .com or .co.il";

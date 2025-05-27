@@ -20,6 +20,7 @@ enum ACTION
 ACTION menu();
 void printTransaction(Account a, ACTION ac, Clock& c);
 void getBalance(Account* bank, int amount, Clock& c);
+void cashWithdraw(Account* bank, int numAccounts, Clock& c);
 void cashDeposit(Account* bank, int amount, Clock& c);
 // Helper function to get and validate account information from user
 unsigned getAccInfo(Account* bank, int numAccounts, ACTION ac);
@@ -59,7 +60,9 @@ int main()
         try
         {
             switch (ac) 
-            {            
+            {           
+                case EXIT:
+                    break; 
                 case BALANCE: 
                     getBalance(bank, SIZE, present);
                     break;
@@ -74,6 +77,7 @@ int main()
                     break;
                 case SUM_WITHDRAW:
                     printTransaction(bank[0], SUM_WITHDRAW, present);
+                    break;
             }
         }
         catch(const char* exception)
@@ -103,6 +107,7 @@ ACTION menu()
 
     return (ACTION)x;
 }
+
 
 void printTransaction(Account a, ACTION ac, Clock& c) 
 {

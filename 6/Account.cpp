@@ -1,5 +1,8 @@
 #include "Account.h"
 
+// Initialize static counters
+unsigned Account::sumWithdraw = 0;
+unsigned Account::sumDeposit = 0;
 
 Account::Account(int accNum, int code, float balance_, string email_)
 {
@@ -66,14 +69,12 @@ istream& operator>>(istream& is, Account& acc)
         // Throw the exception to caller
         throw error;
     }
-    return;
+    return is;
 }
 
 
 void Account::withdraw(const int& withdrawAmount)
 {
-    // Initialize static counter of total withdrawls on initial function call.
-    sumWithdraw = 0;
     // Case account overdraft exceeds credit limit - Raise exception
     if ((this->balance - withdrawAmount) < CREDIT_LIMIT)
         throw CREDIT_LIMIT_EX;
@@ -91,9 +92,6 @@ void Account::withdraw(const int& withdrawAmount)
 
 void Account::deposit(const int& depositAmount)
 {
-    // Initialize static total deposits counter on initial function call
-    sumDeposit = 0;
-
     // Case argumented amount exceeds maximum allowed deposit amount
     if (depositAmount > MAX_DEPOSIT)
         throw DEPOSIT_LIMIT_EX;
