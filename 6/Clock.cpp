@@ -67,9 +67,9 @@ Clock& Clock::operator+=(int s)
         throw SECOND_ERROR;
     
     // Increment and format second
-    this->second = (s % (MAX_SECOND + 1));
+    this->second = ((this->second + s) % (MAX_SECOND + 1));
     // Increment minute without formatting
-    this->minute += (s / (MAX_SECOND + 1));
+    this->minute += ((this->second + s) / (MAX_SECOND + 1));
     // Increment hour
     this->hour += ((this->minute / (MAX_MINUTE + 1)) % (MAX_HOUR + 1));
     // Format minute

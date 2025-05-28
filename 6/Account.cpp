@@ -51,7 +51,7 @@ Account::Account(const Account& src)
 
 
 // Move ctor
-Account::Account(const Account& src)
+Account::Account(Account&& src)
         : accountNumber(src.getAccountNumber()), code(src.getCode()),
         balance(src.getBalance()), email(src.getEmail()) 
         {}
