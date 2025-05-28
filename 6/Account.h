@@ -19,8 +19,8 @@ extern const char* CREDIT_LIMIT_EX;
 class Account
 {
 private:
-    unsigned accountNumber;
-    unsigned code;
+    int accountNumber;
+    int code;
     float balance;
     string email;
 

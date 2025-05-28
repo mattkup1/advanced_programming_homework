@@ -33,13 +33,14 @@ int main()
     try
     {
         cin >> present;
-        cout << "current time is: " << present << endl;
     }
+    // Case invalid time inputed - Raise exception, Time will be set to 00:00:00
     catch(const char* exception)
     {
         cout << exception << endl;
-        return 0;
     }
+    // Print current time
+    cout << "current time is: " << present << endl;
 
     Account bank[SIZE];
     cout << "enter account number, code and email for " << SIZE << " accounts:\n";

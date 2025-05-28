@@ -62,7 +62,7 @@ istream& operator>>(istream& is, Account& acc)
 {
     // Read account info from stream
     is >>  acc.accountNumber >> acc.code >> acc.email;
-
+    cout << "accnum:" << acc.accountNumber << endl;
     try
     {
         if (acc.accountNumber < 0)
