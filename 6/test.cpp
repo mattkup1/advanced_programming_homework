@@ -1,11 +1,13 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
 int main()
 {
-    unsigned i = 0;
-    cout << endl;
-    cout << i << endl;
-    return 0;
+    string email = "matiskuperwasser@gmail.com";
+
+    cout << email.find(".com", 16) << endl;
+
+    cout << "len: " << email.length() << endl;
 }

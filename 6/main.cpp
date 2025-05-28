@@ -53,7 +53,7 @@ int main()
         }
         catch(const char* error)
         {
-            cout << error << endl;
+            cout << present << "\t" << error << endl;
             --i;
         }
     }
@@ -158,30 +158,37 @@ void cashDeposit(Account* bank, int numAccounts, Clock& c)
 {
    int accNum, code;
     float amount;
-
-    // Get account details
-    cout << "please enter account number: " << endl;
-    cin >> accNum;
-    cout << "please enter the code: " << endl;
-    cin >> code;
-    // Get deposit amount
-    cout << "enter the amount of the deposit: " << endl;
-    cin >> amount;
     
     try
     {
-        // Validate input
+        // Get account number
+        cout << "please enter account number " << endl;
+        cin >> accNum;
+
         // Search for account 
         for (unsigned i = 0; i < numAccounts; ++i)
         {
             // Case account exists in bank
             if (accNum == bank[i].getAccountNumber())
             {
-                // Check if the code matches, If so, Perform deposit, Else, Raise exception
-                (code == bank[i].getCode() ? bank[i].deposit(amount) : throw WRONG_CODE_EX);
-                // Print the transaction details - will only be executed if an exception was not raised in the previous line
-                printTransaction(bank[i], DEPOSIT, c);
-                return;
+                // Get code
+                cout << "please enter the code " << endl;
+                cin >> code;
+
+                // Check if the code matches
+                if (code == bank[i].getCode()) 
+                {
+                    // Case correct code, Get deposit amount
+                    cout << "enter the amount of the deposit " << endl;
+                    cin >> amount;
+                    // Try performing a deposit, If amount is invalid, An exception will be raised
+                    bank[i].deposit(amount);
+                    // Print the transaction details - will only be executed if an exception was not raised in the previous line
+                    printTransaction(bank[i], WITHDRAW, c);
+                    return;
+                }
+                // Case wrong code
+                throw WRONG_CODE_EX;
             }
         }
         // Case account number not found in iterations - Raise exception
@@ -202,29 +209,36 @@ void cashWithdraw(Account* bank, int numAccounts, Clock& c)
     int accNum, code;
     float amount;
 
-    // Get account details
-    cout << "please enter account number: " << endl;
-    cin >> accNum;
-    cout << "please enter the code: " << endl;
-    cin >> code;
-    // Get withdraw amount
-    cout << "enter the amount of money to withdraw: " << endl;
-    cin >> amount;
-    
     try
     {
-        // Validate input
+        // Get account number
+        cout << "please enter account number " << endl;
+        cin >> accNum;
+
         // Search for account 
         for (unsigned i = 0; i < numAccounts; ++i)
         {
             // Case account exists in bank
             if (accNum == bank[i].getAccountNumber())
             {
-                // Check if the code matches, If so, Perform withdrawl, Else, Raise exception
-                (code == bank[i].getCode() ? bank[i].withdraw(amount) : throw WRONG_CODE_EX);
-                // Print the transaction details - will only be executed if an exception was not raised in the previous line
-                printTransaction(bank[i], WITHDRAW, c);
-                return;
+                // Get code
+                cout << "please enter the code " << endl;
+                cin >> code;
+
+                // Check if the code matches
+                if (code == bank[i].getCode()) 
+                {
+                    // Case correct code, Get withdraw amount
+                    cout << "enter the amount of money to withdraw " << endl;
+                    cin >> amount;
+                    // Try performing a withdrawl, If amount is invalid, An exception will be raised
+                    bank[i].withdraw(amount);
+                    // Print the transaction details - will only be executed if an exception was not raised in the previous line
+                    printTransaction(bank[i], WITHDRAW, c);
+                    return;
+                }
+                // Case wrong code
+                throw WRONG_CODE_EX;
             }
         }
         // Case account number not found in iterations - Raise exception

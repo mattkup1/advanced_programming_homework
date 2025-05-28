@@ -15,6 +15,7 @@ Account::Account(int accNum, int code, float balance_, string email_)
 
     try
     {
+        int emailLen = this->email.length();
         // Case invalid (negative) account number
         if (accNum < 0)
             throw ACC_NUM_EX;
@@ -22,10 +23,10 @@ Account::Account(int accNum, int code, float balance_, string email_)
         if (code < MIN_CODE || code > MAX_CODE)
             throw ACC_CODE_EX;
         // Case email address missing "@"
-        if (email_.find("@", 1) < 1)
+        if (email_.find("@", 1) > emailLen)
             throw EMAIL_AT_EX;
         // Case invalid domain (not .com or .co.il)
-        if (email_.find(".com", 2) < 1 || email_.find("co.il"))
+        if (email_.find(".com", 2) > emailLen && email_.find("co.il") > emailLen)
             throw DOMAIN_EX;
     }
     // Case invalid input - Initialize all fields to default and raise exception
@@ -62,16 +63,17 @@ istream& operator>>(istream& is, Account& acc)
 {
     // Read account info from stream
     is >>  acc.accountNumber >> acc.code >> acc.email;
-    cout << "accnum:" << acc.accountNumber << endl;
+
     try
     {
+        int emailLen = acc.email.length();
         if (acc.accountNumber < 0)
             throw ACC_NUM_EX;
         if (acc.code < MIN_CODE || acc.code > MAX_CODE)
             throw ACC_CODE_EX;
-        if (acc.email.find("@", 1) < 1)
+        if (acc.email.find("@", 1) > emailLen)
             throw EMAIL_AT_EX;
-        if (acc.email.find(".com", 2) < 2 || acc.email.find(".co.il", 2) < 2)
+        if (acc.email.find(".com", 2) > emailLen && acc.email.find(".co.il", 2) > emailLen)
             throw DOMAIN_EX;
     }
     // Case invalid input
