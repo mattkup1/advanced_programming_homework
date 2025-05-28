@@ -73,14 +73,12 @@ int main()
                     getBalance(bank, SIZE, present);
                     break;
                 case WITHDRAW:
-                    cout << endl << endl;
                     cashWithdraw(bank, SIZE, present);
                     break;
                 case DEPOSIT:
                     cashDeposit(bank, SIZE, present);
                     break;
                 case SUM_DEPOSIT: 
-                    cout << endl;
                     printTransaction(bank[0], SUM_DEPOSIT, present);
                     break;
                 case SUM_WITHDRAW:
@@ -95,7 +93,7 @@ int main()
         
         // Increment time by 40 seconds
         present += 40;
-        ac = menu();
+        ac = menu(); 
     }
     return 0;
 }
@@ -117,36 +115,9 @@ ACTION menu()
 }
 
 
-void printTransaction(Account a, ACTION ac, Clock& c) 
-{
-    cout << c << "\t\t";
-    switch (ac) 
-    {
-        // Add exit case to avoid warning when compiling
-        case EXIT:
-            break;
-        case BALANCE:
-            cout << "account #: " << a.getAccountNumber() << "\t";
-            cout << "balance: " << a.getBalance() << endl;
-            break;
-        case DEPOSIT:
-        case WITHDRAW: 
-            cout << "account #: " << a.getAccountNumber() << "\t";
-            cout << "new balance: " << a.getBalance() << endl;
-            break;
-        case SUM_DEPOSIT:
-            cout << "sum of all deposits: " << Account::getSumDeposit() << endl;
-            break;
-        case SUM_WITHDRAW:
-            cout << "sum of all withdrawals: " << Account::getSumWithdraw() << endl;
-            break;
-    }
-}
-
-
 void getBalance(Account* bank, int numAccounts, Clock& c) 
 {
-   int accNum, code;
+    int accNum, code;
     float amount;
 
     // Get account details
@@ -188,12 +159,12 @@ void cashDeposit(Account* bank, int numAccounts, Clock& c)
     float amount;
 
     // Get account details
-    cout << "please enter account number: " << endl << endl;
+    cout << "please enter account number: " << endl;
     cin >> accNum;
-    cout << "please enter the code: " << endl << endl;
+    cout << "please enter the code: " << endl;
     cin >> code;
     // Get deposit amount
-    cout << "enter the amount of the deposit: " << endl << endl;
+    cout << "enter the amount of the deposit: " << endl;
     cin >> amount;
     
     try
@@ -231,12 +202,12 @@ void cashWithdraw(Account* bank, int numAccounts, Clock& c)
     float amount;
 
     // Get account details
-    cout << "please enter account number: " << endl << endl;
+    cout << "please enter account number: " << endl;
     cin >> accNum;
-    cout << "please enter the code: " << endl << endl;
+    cout << "please enter the code: " << endl;
     cin >> code;
     // Get withdraw amount
-    cout << "enter the amount of money to withdraw: " << endl << endl;
+    cout << "enter the amount of money to withdraw: " << endl;
     cin >> amount;
     
     try
@@ -263,5 +234,29 @@ void cashWithdraw(Account* bank, int numAccounts, Clock& c)
     {   
         // Pass the exception on to the caller function
         throw exception;
+    }
+}
+
+
+void printTransaction(Account a, ACTION ac, Clock& c) 
+{
+    cout << c << "\t\t";
+    switch (ac) 
+    {
+        // Add exit case to avoid warning when compiling
+        case EXIT:
+            break;
+        case BALANCE:
+        case DEPOSIT:
+        case WITHDRAW: 
+            cout << "account #: " << a.getAccountNumber() << "\t";
+            cout << "balance: " << a.getBalance() << endl;
+            break;
+        case SUM_DEPOSIT:
+            cout << "sum of all deposits: " << Account::getSumDeposit() << endl;
+            break;
+        case SUM_WITHDRAW:
+            cout << "sum of all withdrawals: " << Account::getSumWithdraw() << endl;
+            break;
     }
 }

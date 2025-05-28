@@ -99,8 +99,8 @@ void Account::withdraw(const int& withdrawAmount)
     // Case valid withdrawl - Decreese withdrawl amount from account balance
     this->balance -= withdrawAmount;
 
-    // Increment static withdrawl counter
-    ++sumWithdraw;
+    // Increase static withdrawls summary by withdrawl amount
+    sumWithdraw += withdrawAmount;
 }
 
 
@@ -113,8 +113,8 @@ void Account::deposit(const int& depositAmount)
     // Case valid deposit - Increase account balance by deposit amount
     this->balance += depositAmount;
 
-    // Increment static deposits counter
-    ++sumDeposit;
+    // Increase static deposits summary by deposit amount
+    sumDeposit += depositAmount;
 }
 
 
