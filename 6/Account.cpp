@@ -5,6 +5,7 @@
 unsigned Account::sumWithdraw = 0;
 unsigned Account::sumDeposit = 0;
 
+// Parameterized ctor
 Account::Account(int accNum, int code, float balance_, string email_)
 {
     // Convert email to lower case
@@ -34,14 +35,26 @@ Account::Account(int accNum, int code, float balance_, string email_)
         this->email = "";
         throw error;
     }
-    
-
-    // Case valid arguments, Assign to object fields.
+        // Case valid arguments, Assign to object fields.
     this->accountNumber = accNum;
     this->code = code;
     this->balance = balance_;
     this->email = email_;
 }
+
+    
+// Copy ctor
+Account::Account(const Account& src)
+        : accountNumber(src.getAccountNumber()), code(src.getCode()),
+        balance(src.getBalance()), email(src.getEmail()) 
+        {}
+
+
+// Move ctor
+Account::Account(const Account& src)
+        : accountNumber(src.getAccountNumber()), code(src.getCode()),
+        balance(src.getBalance()), email(src.getEmail()) 
+        {}
 
 
 // Input >> operator

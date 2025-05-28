@@ -27,12 +27,16 @@ private:
     // Static counters
     static unsigned sumWithdraw;
     static unsigned sumDeposit;
-    
+
 public:
     // Default ctor
     Account() : accountNumber(0), code(0), balance(0.0), email("") {}
     // Assignment ctor
     Account(int, int, float, string);
+    // Copy ctor
+    Account(const Account&);
+    // Move ctor
+    Account(Account&&);
 
     // Methods
     // Getters
