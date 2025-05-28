@@ -67,13 +67,16 @@ Clock& Clock::operator+=(int s)
         throw SECOND_ERROR;
     
     // Increment and format second
-    this->second = ((this->second + s) % (MAX_SECOND + 1));
+    this->second += s;
     // Increment minute without formatting
     this->minute += ((this->second + s) / (MAX_SECOND + 1));
     // Increment hour
-    this->hour += ((this->minute / (MAX_MINUTE + 1)) % (MAX_HOUR + 1));
-    // Format minute
+    this->hour += ((this->minute / (MAX_MINUTE + 1)));
+
+    // Format time to correct format
+    this->hour %= (MAX_HOUR + 1);
     this->minute %= (MAX_MINUTE + 1);
+    this->second %= (MAX_SECOND + 1);
 
     return *this;
 }   
