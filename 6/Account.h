@@ -5,7 +5,7 @@
 using namespace std;
 
 const unsigned MIN_CODE = 1000, MAX_CODE = 9999;
-const int CREDIT_LIMIT = -600;
+const int CREDIT_LIMIT = -6000;
 const unsigned MAX_WITHDRAWL = 2500, MAX_DEPOSIT = 10000;
 
 extern const char* ACC_NUM_EX;     

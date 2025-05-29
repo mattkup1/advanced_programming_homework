@@ -64,6 +64,7 @@ istream& operator>>(istream& is, Account& acc)
     // Read account info from stream
     is >>  acc.accountNumber >> acc.code >> acc.email;
 
+    // Validate input, If invalid - Raise exception
     try
     {
         int emailLen = acc.email.length();

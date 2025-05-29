@@ -6,6 +6,7 @@ using namespace std;
 
 const int MAX_HOUR = 23, MAX_MINUTE = 59, MAX_SECOND = 59;
 
+// Externalize error messages to avoid complilation issues
 extern const char* HOUR_ERROR;
 extern const char* MINUTE_ERROR;
 extern const char* SECOND_ERROR;

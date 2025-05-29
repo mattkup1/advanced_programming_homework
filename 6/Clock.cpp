@@ -3,6 +3,7 @@
 
 Clock::Clock(int h, int m, int s)
 {
+    // Validate argumented hour, minute and second
     try
     {
         if (s < 0 || s > MAX_SECOND)

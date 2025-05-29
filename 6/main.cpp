@@ -17,11 +17,16 @@ enum ACTION
     SUM_WITHDRAW
 };
 
+// Function to prompt user for action number from menu and return user input
 ACTION menu();
+// Function to print transaction details
 void printTransaction(Account a, ACTION ac, Clock& c);
-void getBalance(Account* bank, int amount, Clock& c);
+// Function that reads account info from user and print account balance
+void getBalance(Account* bank, int numAccounts, Clock& c);
+// Function that reads account info and deposit amount from user and perform deposit
+void cashDeposit(Account* bank, int numAccounts, Clock& c);
+// Function that reads account info and withdrawl amount from user and perform withdrawl
 void cashWithdraw(Account* bank, int numAccounts, Clock& c);
-void cashDeposit(Account* bank, int amount, Clock& c);
 
 
 int main() 
@@ -256,6 +261,7 @@ void cashWithdraw(Account* bank, int numAccounts, Clock& c)
 void printTransaction(Account a, ACTION ac, Clock& c) 
 {
     cout << c << "\t\t";
+    // Perform action based on argumented action
     switch (ac) 
     {
         // Add exit case to avoid warning when compiling
@@ -268,10 +274,82 @@ void printTransaction(Account a, ACTION ac, Clock& c)
             cout << "balance: " << a.getBalance() << endl;
             break;
         case SUM_DEPOSIT:
+            // Print the summary of all deposits from bank, Using the static summary
             cout << "sum of all deposits: " << Account::getSumDeposit() << endl;
             break;
         case SUM_WITHDRAW:
+        // Print the summary of all withdrawls from bank, Using the static summary
             cout << "sum of all withdrawals: " << Account::getSumWithdraw() << endl;
             break;
     }
 }
+
+
+/*
+EXAMPLE:
+
+enter current time
+11:58:01
+current time is: 11:58:01
+enter account number, code and email for 10 accounts:
+3829 2293 matt@gmail.com
+9999 2323 jenny@yahoo.com
+3939 1010 josh@hotmail.com
+-2933 8888 gabe@meta.co.il
+11:58:01        ERROR: account number must be positive
+2933 8888 gabe@meta.co.il
+9900 781 brandon@microsoft.com
+11:58:01        ERROR: code must be of 4 digits
+9900 7810 brandon@microsoft.com
+5651 2224 glen@gmail.com
+8902 3855 abe@amazon.eu
+11:58:01        ERROR: email must end with .com or .co.il
+8902 3855 abe.amazon.com
+11:58:01        ERROR: email must contain @
+2902 3855 abe@amazon.com
+4589 0344 tiffany@intel.co.il
+11:58:01        ERROR: code must be of 4 digits
+4589 7344 tiffany@intel.co.il
+3921 5156 nate@ajhco.com
+9233 7771 jacob@apple.com
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+1
+please enter account number: 
+4589
+please enter the code: 
+7344
+11:58:01                account #: 4589 balance: 0
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+2
+please enter account number 
+4589
+please enter the code 
+7344
+enter the amount of the deposit 
+3500
+11:58:41                account #: 4589 balance: 3500
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+3
+please enter account number 
+2902
+please enter the code 
+3855
+enter the amount of money to withdraw 
+800
+
+*/
