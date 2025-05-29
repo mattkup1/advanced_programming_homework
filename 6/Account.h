@@ -24,7 +24,7 @@ private:
     float balance;
     string email;
 
-    // Static counters
+    // Static summaries
     static unsigned sumWithdraw;
     static unsigned sumDeposit;
 
@@ -50,7 +50,7 @@ public:
     // Function to deposit money to account
     void deposit(const int&);
 
-    // Getters for static withdrawls and deposits counters
+    // Getters for static withdrawls and deposits summaries
     static unsigned getSumWithdraw() { return sumWithdraw; }
     static unsigned getSumDeposit()  { return sumDeposit;  }
 
