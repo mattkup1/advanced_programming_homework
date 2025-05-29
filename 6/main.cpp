@@ -351,5 +351,76 @@ please enter the code
 3855
 enter the amount of money to withdraw 
 800
-
+11:59:21                account #: 2902 balance: -800
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+4
+12:00:01                sum of all deposits: 3500
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+5
+12:00:41                sum of all withdrawals: 800
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+2
+please enter account number 
+2902
+please enter the code 
+3855
+enter the amount of the deposit 
+6000
+12:01:21                account #: 2902 balance: 5200
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+2
+please enter account number 
+2902
+please enter the code 
+3855
+enter the amount of the deposit 
+11000
+ERROR: cannot deposit more than 10000 NIS
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+1
+please enter account number: 
+2902 
+please enter the code: 
+3855
+12:02:41                account #: 2902 balance: 5200
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+4
+12:03:21                sum of all deposits: 9500
+enter 1 to get account balance
+enter 2 to deposit money
+enter 3 to withdraw money
+enter 4 to see the sum of all deposits
+enter 5 to see the sum of all withdrawals
+enter 0 to exit
+0
 */
