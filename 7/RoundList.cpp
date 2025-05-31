@@ -34,7 +34,7 @@ void RoundList::addToEnd(const int& val)
 }
 
 
-int RoundList::search(const int& index)
+int RoundList::search(int index) const
 {
     if (this->isEmpty())
         throw "List empty, Cannot search empty list";
@@ -46,18 +46,40 @@ int RoundList::search(const int& index)
 }
 
 
+void RoundList::add(int value)
+{
+    // Add new node to head
+    this->head = new Link(value, this->head);
+
+    // Case added node is the first node in the list - point next to self
+    if (this->head->next == nullptr)
+    {
+        this->head->next = this->head;
+        return;
+    }
+
+    // Point last node to new node
+    Link* last = this->head->next;
+    while (last->next != this->head->next)
+        last = last->next;
+    last->next = this->head;
+}
+
+
 bool RoundList::search(const int& value) const
 {
     if (this->isEmpty())
         throw "List empty, Cannot search empty list";
     Link* ptr = this->head;
-    while (ptr->next != this->head)
+    do
+    {
         if (ptr->value == value)
             return true;
+        ptr = ptr->next;
+    } while (ptr != this->head);
+
     // Case not found in iterations
-    // Check last link and return true if found
-    // And false if not found
-    return ptr->value == value;
+    return false;
 }
 
 
@@ -66,31 +88,50 @@ void RoundList::removeFirst()
     // make sure there is a first element
 	if (this->isEmpty())
 		throw "List empty, no Elements to remove";
-	// save pointer to the removed node
-	Link* ptr = head;
-    while ((ptr = ptr->next) != this->head)
-	// Reassign the first node
-	this->head = this->head->next;
-    // Delete previous first node
-	delete ptr->next;
-    // Point last node at new first node
-	ptr->next = head;
+
+    // Case one node in the list
+    if (this->head->next == this->head)
+    {
+        delete this->head;
+        this->head = nullptr;
+        return;
+    }
+
+	// save pointer to the staged node for removal
+	Link* last = head;
+
+    // Find last node
+    while (last->next != this->head)
+        last = last->next;
+
+    // Store pointer to first node temporarily
+    Link* temp = this->head;
+    // Reassign head pointer to second node in the list
+    this->head = this->head->next;
+    // Set next pointer of last node in the list to the new head of the list
+    last->next = this->head;
+    // Free memory of deleted node
+    delete temp;
 }
 
 
 void RoundList::clear()
 {
-	// empty all elements from the List
-    Link* headPtr = this->head;
-    Link* ptr = this->head;
-    Link* next;
+    if (this->isEmpty())
+        return;
 
-	while (next != headPtr)
-	{
-		// delete the element pointed to by p
-		next = ptr->next;
-		ptr->next = nullptr;
-		delete ptr;
+    // Empty circular list and free memory for all nodes
+    Link* ptr = this->head->next;
+    // Traverse the list
+    while (ptr != this->head)
+    {
+        Link* next = ptr->next;
+        ptr->next = nullptr;
+        delete ptr;
         ptr = next;
-	}
+    }
+    // Free first node
+    this->head->next = nullptr;
+    delete this->head;
+    this->head = nullptr;
 }

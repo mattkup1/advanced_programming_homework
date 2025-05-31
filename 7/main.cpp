@@ -11,7 +11,7 @@ int main()
 {
 	RoundList ls1;
 	int choice;
-	cout << "Enter your choice: ";
+	cout << "Enter your choice: " << endl;
 	cin >> choice;
 	while (choice != EXIT)
 	{
@@ -19,7 +19,7 @@ int main()
 		switch (choice) 
 		{
 			case ADD: 	
-				cout << "Enter 5 numbers: ";
+				cout << "Enter 5 numbers: " << endl;
 				for (int i = 0; i < 5; i++)
 				{
 					cin >> num;
@@ -27,7 +27,7 @@ int main()
 				}
 				break;
 			case ADD_TO_END:
-				cout << "Enter 5 numbers: ";
+				cout << "Enter 5 numbers: " << endl;
 				for (int i = 0; i < 5; i++)
 				{
 					cin >> num;
@@ -38,7 +38,7 @@ int main()
 				ls1.removeFirst();
 				break;
 			case SEARCH: 
-				cout << "Enter a number: ";
+				cout << "Enter a number: " << endl;
 				cin >> num;
 				cout << ls1.search(num) << endl;
 				break;
@@ -54,7 +54,7 @@ int main()
 			default: 
 				cout << "ERROR!" << endl;
 		}
-		cout << "Enter your choice: ";
+		cout << "Enter your choice: " << endl;
 		cin >> choice;
 	}
 	return 0;

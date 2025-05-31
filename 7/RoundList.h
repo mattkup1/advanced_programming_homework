@@ -12,10 +12,12 @@ public:
     // dtor
     ~RoundList();
 
-    // Methods
+    // Round List specific methods
     void addToEnd(const int&);              
-    int search(const int&) ;                
-    bool search(const int& value) const;                
+    int search(int) const;  
+    // Overriden List (parent) methods
+    void add(int);              
+    bool search(const int&) const;                
 	void removeFirst();     
-    void clear();                
+    void clear();              
 };
