@@ -14,10 +14,9 @@ public:
 
     // Round List specific methods
     void addToEnd(const int&);              
-    int search(int) const;  
+    int search(const int&) const; // Overrides the List class boolean search function  
     // Overriden List (parent) methods
-    void add(int);              
-    bool search(const int&) const;                
+    void add(int);                          
 	void removeFirst();     
     void clear();              
 };

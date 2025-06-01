@@ -34,7 +34,7 @@ void RoundList::addToEnd(const int& val)
 }
 
 
-int RoundList::search(int index) const
+int RoundList::search(const int& index) const
 {
     if (this->isEmpty())
         throw "List empty, Cannot search empty list";
@@ -63,23 +63,6 @@ void RoundList::add(int value)
     while (last->next != this->head->next)
         last = last->next;
     last->next = this->head;
-}
-
-
-bool RoundList::search(const int& value) const
-{
-    if (this->isEmpty())
-        throw "List empty, Cannot search empty list";
-    Link* ptr = this->head;
-    do
-    {
-        if (ptr->value == value)
-            return true;
-        ptr = ptr->next;
-    } while (ptr != this->head);
-
-    // Case not found in iterations
-    return false;
 }
 
 
