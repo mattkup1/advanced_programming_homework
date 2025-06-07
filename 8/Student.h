@@ -18,12 +18,12 @@ public:
     // Copy ctor
     Student(const Student&);
     // Virtual dtor
-    virtual ~Student();
+    virtual ~Student() {}
 
     // Abstract method to compute whether the student is eligible for scholarship
     virtual bool milga() const = 0;
     // Abstract method that returns the student type (BA / MA / PHD)
-    virtual string studType() const = 0;
+    virtual std::string studType() const = 0;
     // Method to print student information and scholarship elegibility
     virtual void print() const;
     // Method to get student information from the user

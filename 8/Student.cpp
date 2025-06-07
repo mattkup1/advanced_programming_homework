@@ -1,6 +1,18 @@
 #include "Student.h"
 
 
+// Default ctor
+Student::Student(int id_, std::string fn, std::string ln, int numCourses)
+    : id(0), firstName(fn), lastName(ln), numberOfCourses(numCourses)
+{}
+
+// Copy ctor
+Student::Student(const Student& src)
+    : id(src.id), firstName(src.firstName), lastName(src.lastName),
+      numberOfCourses(src.numberOfCourses)
+{}
+
+
 // Method to print student information and scholarship elegibility
 void Student::print() const
 {
