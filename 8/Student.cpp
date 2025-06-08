@@ -2,7 +2,7 @@
 
 
 // Default ctor
-Student::Student(int id_, std::string fn, std::string ln, int numCourses)
+Student::Student(int id_, string fn, string ln, int numCourses)
     : id(0), firstName(fn), lastName(ln), numberOfCourses(numCourses)
 {}
 
