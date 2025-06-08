@@ -27,7 +27,7 @@ public:
     // Method to compute whether the student is eligible for scholarship
     bool milga() const override final;
     // Method that returns the student type
-    string studType() const override final { return "MA"; }
+    string studType() const override final { return "MA student"; }
     // Method to print student information and scholarship elegibility
     void print() const override final;
     // Method to get student information from the user
