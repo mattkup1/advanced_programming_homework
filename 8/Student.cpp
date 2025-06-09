@@ -3,7 +3,7 @@
 
 // Default ctor
 Student::Student(int id_, string fn, string ln, int numCourses)
-    : id(0), firstName(fn), lastName(ln), numberOfCourses(numCourses)
+    : id(id_), firstName(fn), lastName(ln), numberOfCourses(numCourses)
 {}
 
 // Copy ctor
@@ -17,10 +17,10 @@ Student::Student(const Student& src)
 void Student::print() const
 {
     if (this->milga())
-        cout << "Scholarship" << endl;
+        cout << "*** Scholarship ***" << endl;
     
     cout << "ID: " << this->id << endl
-         << "NAME: " << this->firstName << " "
+         << "Name: " << this->firstName << " "
          << this->lastName << endl;
 }
 

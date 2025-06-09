@@ -11,7 +11,13 @@ MA::MA(const MA& src) : BA(src), research(src.research) {}
 
 
 // Move ctor
-MA::MA(MA&& src) : BA(src), research(src.research) {}
+MA::MA(MA&& src) : BA(std::move(src)), research(src.research) {}
+
+
+MA::~MA()
+{
+    BA::~BA();
+}
 
 
 // Copy assignment
@@ -26,7 +32,7 @@ MA& MA::operator=(const MA& src)
 // Move assignment
 MA& MA::operator=(MA&& src)
 {
-    BA::operator=(src);
+    BA::operator=(std::move(src));
     this->research = src.research;
     return *this;
 }
@@ -43,14 +49,14 @@ bool MA::milga() const
     for (int i = 0; i < this->numberOfCourses; ++i)
         gradeSum += this->grades[i];
     
-    return (gradeSum / this->numberOfCourses) > 90;
+    return (gradeSum / this->numberOfCourses) >= 90;
 }
 
 
 // Method to print student information and scholarship elegibility
 void MA::print() const
 {
-    // First call parent method
+    // Call parent method for global student information
     this->BA::print();
     // Print MA specifics
     cout << "research: " << (this->research ? "YES" : "NO") << endl;
@@ -66,5 +72,6 @@ void MA::input()
     char r;
     cout << "research? enter Y or N" << endl;
     cin >> r;
+    cin.clear();
     this->research = (r == 'Y');
 }

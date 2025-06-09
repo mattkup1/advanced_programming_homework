@@ -15,6 +15,8 @@ public:
     BA(const BA&);
     // Move ctor
     BA(BA&&);
+    // dtor
+    virtual ~BA() override;
     // Copy assignment
     BA& operator=(const BA&);
     // Move assignment

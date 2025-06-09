@@ -3,17 +3,27 @@
 
 // Default ctor
 BA::BA(int id, string fn, string ln, int numCourses)
-    : Student::Student(id, fn, ln, numCourses),
-      grades(new int[numCourses])
-{}
+    : Student(id, fn, ln, numCourses)
+{
+    if (this->numberOfCourses > 0)
+        this->grades = new int[this->numberOfCourses];
+    else
+        this->grades = nullptr;
+}
 
 
 // Copy ctor
 BA::BA(const BA& src)
-    : Student(src), grades(new int[src.numberOfCourses])
+    : Student(src)
 {
-    for (int i = 0; i < this->numberOfCourses; ++i)
-        this->grades[i] = src.grades[i];
+    if (this->numberOfCourses > 0)
+    {
+        this->grades = new int[this->numberOfCourses];
+        for (int i = 0; i < this->numberOfCourses; ++i)
+            this->grades[i] = src.grades[i];
+    }
+    else
+        this->grades = nullptr;
 }
 
 
@@ -21,6 +31,16 @@ BA::BA(const BA& src)
 BA::BA(BA&& src) : Student(src), grades(src.grades)
 {
     src.grades = nullptr;
+}
+
+
+// dtor
+BA::~BA()
+{
+    if (this->grades)
+        delete [] this->grades;
+    this->grades = nullptr;
+    this->numberOfCourses = 0;
 }
 
 
@@ -58,6 +78,7 @@ BA& BA::operator=(BA&& src)
     if (this->grades)
         delete [] this->grades;
     this->grades = src.grades;
+    src.grades = nullptr;
     return *this;
 }
 
@@ -73,14 +94,14 @@ bool BA::milga() const
     for (int i = 0; i < this->numberOfCourses; ++i)
         gradeSum += this->grades[i];
 
-    return (gradeSum / this->numberOfCourses) > 95;
+    return (gradeSum / this->numberOfCourses) >= 95;
 }
 
 
 // Method to print student information and scholarship elegibility
 void BA::print() const
 {
-    // First call parent method
+    // First call parent method to print global student information
     this->Student::print();
     // Print BA specifics
     cout << "grades: ";
@@ -93,10 +114,13 @@ void BA::print() const
 // Method to get student information from the user
 void BA::input()
 {
+    if (this->grades)
+        delete [] this->grades;
     // Call parent method to get input to global fields
     this->Student::input();
+    this->grades = new int[numberOfCourses];
     // Get BA specific input
-    cout << "enter a list of student grades: " << endl;
+    cout << "enter a list of student grades" << endl;
     for (int i = 0; i < this->numberOfCourses; ++i)
         cin >> this->grades[i];
 }

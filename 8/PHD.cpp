@@ -8,17 +8,15 @@ PHD::PHD(int id, string fn, string ln, int numCourses, int hrs)
 
 
 // Copy ctor
-PHD::PHD(const PHD& src) : Student(src)
-{
-    this->weeklyResearchHrs = src.weeklyResearchHrs;
-}
+PHD::PHD(const PHD& src) 
+    : Student(src), weeklyResearchHrs(src.weeklyResearchHrs)
+{}
 
 
 // Move ctor
-PHD::PHD(PHD&& src) : Student(src)
-{
-    this->weeklyResearchHrs = src.weeklyResearchHrs;
-}
+PHD::PHD(PHD&& src) 
+    : Student(src), weeklyResearchHrs(src.weeklyResearchHrs)
+{}
 
 
 // Copy assignment
@@ -28,6 +26,7 @@ PHD& PHD::operator=(const PHD& src)
         return *this;
     Student::operator=(src);
     this->weeklyResearchHrs = src.weeklyResearchHrs;
+    return *this;
 }
 
 
@@ -38,6 +37,7 @@ PHD& PHD::operator=(PHD&& src)
         return *this;
     Student::operator=(src);
     this->weeklyResearchHrs = src.weeklyResearchHrs;
+    return *this;
 }
 
 
@@ -53,7 +53,7 @@ bool PHD::milga() const
 void PHD::print() const
 {
     Student::print();
-    cout << "number of research hours: " << this->weeklyResearchHrs;
+    cout << "number of research hours: " << this->weeklyResearchHrs << endl;
 }
 
 

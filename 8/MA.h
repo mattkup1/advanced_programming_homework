@@ -14,6 +14,8 @@ public:
     MA(const MA&);
     // Move ctor
     MA(MA&&);
+    // dtor
+    ~MA() override;
     // Copy assignment
     MA& operator=(const MA&);
     // Move assignment
