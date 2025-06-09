@@ -1,47 +1,60 @@
 #pragma once
 
+/*
+    Student.h
+
+    Abstract base class for representing a student in the university system.
+    This class defines the common interface and data members for all student types (BA, MA, PHD).
+    It provides basic information such as ID, first name, last name, and number of courses.
+    The class enforces implementation of scholarship eligibility and student type identification
+    in derived classes via pure virtual methods. It also provides virtual methods for input and output.
+*/
+
 #include <iostream>
 #include <string>
 using namespace std;
 
+// Abstract Class: Student
 class Student
 {
 protected:
-    int id;
-    string firstName;
-    string lastName;
-    int numberOfCourses;
+    int id;                 // Student's unique identifier
+    string firstName;       // Student's first name
+    string lastName;        // Student's last name
+    int numberOfCourses;    // Number of courses the student is enrolled in
 
 public:
-    // Default ctor
+    // Default constructor with optional parameters
     Student(int id = 0, string fn = "", string ln = "", int numCourses = 0);
-    // Copy ctor
+
+    // Copy constructor
     Student(const Student&);
-    // Virtual dtor
+
+    // Virtual destructor for safe polymorphic deletion
     virtual ~Student() {}
 
-    // ID Getter
-    virtual int getId() const { return this->id; };
-    // First Name Getter
-    virtual const string& getFn() const { return this->firstName; }
-    // Last Name Getter
-    virtual const string& getLn() const { return this->lastName; }
-    // Number of courses Getter
-    virtual int getNumCourses() const { return this->numberOfCourses; }
+    // Getters
+    virtual int getId() const { return this->id; }                        // Get student ID
+    virtual const string& getFn() const { return this->firstName; }       // Get first name
+    virtual const string& getLn() const { return this->lastName; }        // Get last name
+    virtual int getNumCourses() const { return this->numberOfCourses; }   // Get number of courses
 
-    // ID Setter
-    virtual void setId(const int& id_) { this->id = id_; }
-    // First Name Setter
-    virtual void setFn(const string& fn) { this->firstName = fn; }
-    // Last Name Setter
-    virtual void setLn(const string& ln) { this->lastName = ln; }
+    // Setters
+    virtual void setId(const int& id_) { this->id = id_; }                // Set student ID
+    virtual void setFn(const string& fn) { this->firstName = fn; }        // Set first name
+    virtual void setLn(const string& ln) { this->lastName = ln; }         // Set last name
 
-    // Abstract method to compute whether the student is eligible for scholarship
+    // Pure virtual method: must be implemented by derived classes
+    // Returns true if the student is eligible for a scholarship
     virtual bool milga() const = 0;
-    // Abstract method that returns the student type (BA / MA / PHD)
+
+    // Pure virtual method: must be implemented by derived classes
+    // Returns a string representing the student type (e.g., "BA", "MA", "PHD")
     virtual std::string studType() const = 0;
-    // Method to print student information and scholarship elegibility
+
+    // Virtual method to print student information and scholarship eligibility
     virtual void print() const;
-    // Method to get student information from the user
+
+    // Virtual method to get student information from the user
     virtual void input();
 };

@@ -1,36 +1,59 @@
+/*
+    PHD.h:
+    Declaration of the PHD (Doctor of Philosophy) class, derived from the abstract Student class.
+    This class represents a PHD student in the university system, adding management of weekly research hours.
+    It provides constructors, destructor, copy/move operations, and overrides for scholarship eligibility,
+    student type identification, input, and output.
+*/
+
 #pragma once
 
 #include "Student.h"
 
-
+// PHD Class: Represents a PHD student with weekly research hours
 class PHD : public Student
 {
 private:
-    int weeklyResearchHrs;
+    int weeklyResearchHrs; // Number of weekly research hours
 
 public:
-    // Default ctor
+    // Default constructor
+    // Initializes a PHD student with optional id, name, number of courses, and research hours
     PHD(int id = 0, string fn = "", string ln = "", int numCourses = 0, int hrs = 0);
-    // Copy ctor
+
+    // Copy constructor
+    // Creates a deep copy of another PHD student
     PHD(const PHD&);
-    // Move ctor
+
+    // Move constructor
+    // Transfers resources from another PHD student
     PHD(PHD&&);
-    // Copy assignment
+
+    // Copy assignment operator
+    // Assigns another PHD student to this one (deep copy)
     PHD& operator=(const PHD&);
-    // Move assignment
+
+    // Move assignment operator
+    // Moves another PHD student's resources to this one
     PHD& operator=(PHD&&);
 
     // Weekly Research Hours Getter
+    // Returns the number of weekly research hours
     int getWeeklyResearchHrs() const { return this->weeklyResearchHrs; }
+
     // Weekly Research Hours Setter
+    // Sets the number of weekly research hours
     void setWeeklyResearchHrs(int h) { this->weeklyResearchHrs = h; }
 
-    // Method to compute whether the student is eligible for scholarship
+    // Determines if the student is eligible for a scholarship
     bool milga() const override final;
-    // Method that returns the student type
+
+    // Returns the student type as a string
     string studType() const override final { return "PHD student"; }
-    // Method to print student information and scholarship elegibility
+
+    // Prints student information and scholarship eligibility
     void print() const override final;
-    // Method to get student information from the user
+
+    // Reads student information and research hours from user input
     void input() override final;
 };
