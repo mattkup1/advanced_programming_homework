@@ -25,7 +25,7 @@ int main()
     addStudent(students);
     
     // Print all scholarship eligible students
-    cout << "list of students with a scholarship: " << endl;
+    cout << endl << "list of students with a scholarship:" << endl << endl;
     for (int i = 0; i < numStudents; ++i)
     {
         // Print only students who are eligible for a scholarship
