@@ -1,6 +1,5 @@
 /*
-    BA.cpp
-
+    BA.cpp:
     Implementation file for the BA (Bachelor of Arts) class, derived from the abstract Student class.
     This file defines the constructors, destructor, copy/move operations, and overrides for scholarship eligibility,
     student type identification, input, and output. The class manages dynamic memory for the grades array.

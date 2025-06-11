@@ -1,8 +1,7 @@
 #pragma once
 
 /*
-    Student.h
-
+    Student.h:
     Abstract base class for representing a student in the university system.
     This class defines the common interface and data members for all student types (BA, MA, PHD).
     It provides basic information such as ID, first name, last name, and number of courses.

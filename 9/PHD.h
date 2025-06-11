@@ -49,7 +49,7 @@ public:
     bool milga() const override final;
 
     // Returns the student type as a string
-    string studType() const override final { return "PHD student"; }
+    string studType() const override final { return "PHD"; }
 
     // Prints student information and scholarship eligibility
     void print() const override final;
