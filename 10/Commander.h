@@ -15,6 +15,8 @@ public:
     // Virtual dtor
     ~Commander() {}
 
+    bool isCombat() const { return this->combat; }
+
     // Method to compute whether the soldier should get a medal
     virtual bool medal() const override final;
     // Method to print soldier information

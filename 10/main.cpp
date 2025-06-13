@@ -31,64 +31,57 @@ int main()
     Soldier* s; 
     vector<Soldier*> soldiers; 
     int op; 
-    cout<<"enter 0-7\n"; 
-    cin>>op; 
+    cout << "enter 0-7" << endl; 
+    cin >> op;
+
     while(op!=EXIT) 
     { 
         switch (op) 
         { 
             case ADD_NEW_SOLDIER:add( soldiers ); 
-            // Add a new soldier
+                // Add a new soldier
+                add(soldiers);
                 break; 
-            case DESERVES_MEDAL:printMedalList( soldiers ); 
-            // Print details of all soldiers deserving a medal
+            case DESERVES_MEDAL:
+                // Print details of all soldiers deserving a medal 
+                printMedalList(soldiers); 
                 break; 
 
             case HIGHEST_SOCIOMETRIC: 
                 // Print name (last and first) of the soldier with the highest sociometric score
-                s=highestSociometricScore( soldiers ); 
+                s = highestSociometricScore(soldiers); 
                 // Complete with vector or list parameter
-                cout<<"Officer with the highest sociometric score: "; 
-                cout <<s->getFirstName()<<' '<<s->getLastName()<<endl; break;
+                cout << "Officer with the highest sociometric score: "; 
+                cout << s->getFirstName() << ' ' << s->getLastName() << endl; 
+                break;
 
             case PRIVATE_MEDAL_COUNT: 
-                cout<<"number of privates that received medals: "; 
+                cout << "number of privates that received medals: "; 
                 // Print the number of private soldiers deserving a medal
-                cout<<endl; 
+                
+                cout << endl; 
                 break; 
 
             case NONCOMBAT_COMMANDER:
                 cout << "list of non combat commmanders: " << endl;
                 // Print names (last and first) of commanders who are not in combat
                 for (auto& soldier : soldiers) 
-                { 
-                    if (soldier->soldierType() == "commander") 
-                    { 
-                        Commander* c = dynamic_cast<Commander*>(soldier); 
-                        if (c && !c->combat()) 
-                        { 
-                            cout << c->getLastName() << ' ' << c->getFirstName() << endl; 
-                        } 
-                    } 
-                }
-                cout<<endl; 
+                    if (soldier->soldierType() == "commander" && ! ((Commander*)soldier)->isCombat()) 
+                        cout << soldier->getLastName() << ' ' << soldier->getFirstName() << endl;  
                 break; 
 
             case SUPER_SOLDIER:
                 // Print a suitable message, is there a soldier who participated in more than 15 military operations
-                bool found = false;
                 for (Soldier* soldier : soldiers) 
                 {
                     if (soldier->getNumOperations() > 15) 
                     {
-                        found = true;
+                        cout << "there is at least one soldier that did more than 15 operations\n";
                         break;
                     }
                 }
-                if (found) 
-                    cout << "there is at least one soldier that did more than 15 operations\n";
-                else 
-                    cout << "no soldier did more than 15 operations\n"; 
+
+                cout << "no soldier did more than 15 operations\n"; 
                 break; 
                 
         case REMOVE_OFFICER:
