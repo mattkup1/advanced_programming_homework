@@ -31,7 +31,7 @@ public:
     // Abstract method to compute whether the soldier should get a medal
     virtual bool medal() const = 0;
     // Abstract Method to print soldier information
-    virtual void print() const = 0;
+    virtual void print() const;
     // Abstract Method to get soldier type in string format
     virtual std::string soldierType() const = 0;
 };

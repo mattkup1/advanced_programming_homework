@@ -17,3 +17,11 @@ Soldier::Soldier(Soldier&& src)
 {}
 
 
+void Soldier::print() const
+{
+    std::cout << "ID: " << this->id << std::endl
+              << "first name: " << this->firstName << std::endl
+              << "last name: " << this->lastName << std::endl
+              << "num operations: " << this->numOperations << std::endl;
+}
+
