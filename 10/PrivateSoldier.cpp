@@ -63,11 +63,12 @@ bool PrivateSoldier::medal() const
 // Method to print soldier information
 void PrivateSoldier::print() const
 {
+    std::cout << this->soldierType();
     Soldier::print();
-    std::cout << "num operations: " << this->numOperations;
 
     if (this->numOperations > 0)
     {
+        std::cout << "grades: ";
         for (int i = 0; i < this->numOperations; ++i)
             std::cout << this->opGrades[i] << " ";
         std::cout << std::endl;

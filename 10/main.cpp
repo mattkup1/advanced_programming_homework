@@ -69,25 +69,24 @@ int main()
                 break; 
 
             case NONCOMBAT_COMMANDER:
-                cout << "list of non combat commmanders: " << endl;
+                cout << "list of noncombat commanders: ";
                 // Print names (last and first) of commanders who are not in combat
                 for (Soldier* s : soldiers) 
                     if (s->soldierType() == "commander" && ! ((Commander*)s)->isCombat()) 
-                        cout << s->getLastName() << ' ' << s->getFirstName() << endl;  
-                break; 
+                        cout << s->getLastName() << ' ' << s->getFirstName() << ' ';  
+                cout << endl;
+                break;
 
             case SUPER_SOLDIER:
+                bool flag = false;
                 // Print a suitable message, is there a soldier who participated in more than 15 military operations
-                for (Soldier* soldier : soldiers) 
-                {
+                for (Soldier* soldier : soldiers)
                     if (soldier->getNumOperations() > 15) 
-                    {
-                        cout << "there is at least one soldier that did more than 15 operations" << endl;
-                        break;
-                    }
-                }
+                        flag = true;
 
-                cout << "no soldier did more than 15 operations\n"; 
+                cout << (flag ? "there is at least one soldier that did more than 15 operations" 
+                        : "no soldier did more than 15 operations") 
+                    << endl; 
                 break; 
             
             case REMOVE_OFFICER:

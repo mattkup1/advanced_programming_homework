@@ -5,7 +5,7 @@
 Officer::Officer()
     : Soldier(), socScore(0)
 {
-    std::cout << "Enter the sociometric score:" << std::endl;
+    std::cout << "enter the sociometric score" << std::endl;
     std::cin >> this->socScore;
 }
 
@@ -28,7 +28,7 @@ Officer::Officer(Officer&& src)
 // Method to compute whether the soldier should get a medal
 bool Officer::medal() const
 {
-    return this->numOperations >= 2 && this->socScore >= 92;
+    return this->numOperations > 2 && this->socScore >= 92;
 }
 
 
@@ -36,5 +36,5 @@ bool Officer::medal() const
 void Officer::print() const
 {
     this->Soldier::print();
-    std::cout << "sociometric Score: " << this->socScore << std::endl;
+    std::cout << "sociometric score: " << this->socScore << std::endl;
 }

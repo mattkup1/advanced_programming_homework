@@ -1,0 +1,140 @@
+
+enter 0-7
+choose a soldier
+enter 1 to add a private
+enter 2 to add a commander
+enter 3 to add an officer
+enter id, first name, last name and number of operations
+enter 10 grades
+enter 0-7
+choose a soldier
+enter 1 to add a private
+enter 2 to add a commander
+enter 3 to add an officer
+enter id, first name, last name and number of operations
+enter 5 grades
+enter 0-7
+choose a soldier
+enter 1 to add a private
+enter 2 to add a commander
+enter 3 to add an officer
+enter id, first name, last name and number of operations
+enter 8 grades
+enter 1 if the soldier is combat and 0 if not
+enter 0-7
+choose a soldier
+enter 1 to add a private
+enter 2 to add a commander
+enter 3 to add an officer
+enter id, first name, last name and number of operations
+enter the sociometric score
+enter 0-7
+private
+ID: 111
+first name: aaa
+last name: aaa
+num operations: 10
+grades: 100 100 90 95 98 100 100 100 98 99 
+commander
+ID: 333
+first name: ccc
+last name: ccc
+num operations: 8
+grades: 100 100 90 95 98 100 100 100 
+combat: yes
+officer
+ID: 444
+first name: ddd
+last name: ddd
+num operations: 2
+sociometric Score: 94
+enter 0-7
+choose a soldier
+enter 1 to add a private
+enter 2 to add a commander
+enter 3 to add an officer
+enter id, first name, last name and number of operations
+enter 17 grades
+enter 0-7
+choose a soldier
+enter 1 to add a private
+enter 2 to add a commander
+enter 3 to add an officer
+enter id, first name, last name and number of operations
+enter 15 grades
+enter 0-7
+choose a soldier
+enter 1 to add a private
+enter 2 to add a commander
+enter 3 to add an officer
+enter id, first name, last name and number of operations
+enter 8 grades
+enter 1 if the soldier is combat and 0 if not
+enter 0-7
+choose a soldier
+enter 1 to add a private
+enter 2 to add a commander
+enter 3 to add an officer
+enter id, first name, last name and number of operations
+enter the sociometric score
+enter 0-7
+Officer with the highest sociometric score: hhh hhh
+enter 0-7
+number of privates that received medals: 3
+enter 0-7
+list of noncombat commanders: ggg ggg 
+enter 0-7
+there is at least one soldier that did more than 15 operations
+enter 0-7
+private
+ID: 111
+first name: aaa
+last name: aaa
+num operations: 10
+grades: 100 100 90 95 98 100 100 100 98 99 
+private
+ID: 222
+first name: bbb
+last name: bbb
+num operations: 5
+grades: 100 100 90 95 98 
+commander
+ID: 333
+first name: ccc
+last name: ccc
+num operations: 8
+grades: 100 100 90 95 98 100 100 100 
+combat: yes
+officer
+ID: 444
+first name: ddd
+last name: ddd
+num operations: 2
+sociometric score: 94
+private
+ID: 555
+first name: eee
+last name: eee
+num operations: 17
+grades: 100 100 90 95 98 100 100 100 98 99 90 95 100 98 100 98 100 
+private
+ID: 666
+first name: fff
+last name: fff
+num operations: 15
+grades: 100 100 90 95 98 100 100 90 95 98 100 100 90 95 98 
+commander
+ID: 777
+first name: ggg
+last name: ggg
+num operations: 8
+grades: 100 100 90 95 98 100 100 100 
+combat: no
+officer
+ID: 888
+first name: hhh
+last name: hhh
+num operations: 20
+sociometric score: 100
+enter 0-7
+
