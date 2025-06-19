@@ -1,9 +1,18 @@
+/*
+    Commander.h:
+    Declaration of the Commander class, derived from PrivateSoldier.
+    This class represents a commander in the military system, adding a combat flag
+    to indicate whether the commander is in combat. It provides constructors,
+    destructor, and overrides for medal eligibility, printing, and soldier type identification.
+*/
+
 #include "PrivateSoldier.h"
 
+// Commander Class: Represents a commander with a combat flag
 class Commander : public PrivateSoldier
 {
 private:
-    bool combat;
+    bool combat; // Indicates if the commander is in combat
 
 public:
     // Default ctor

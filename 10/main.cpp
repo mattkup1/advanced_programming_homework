@@ -1,3 +1,12 @@
+/*
+    main.cpp:
+    This program manages a database of soldiers using C++ STL containers.
+    It allows the user to add new soldiers (Private, Commander, Officer), print details of soldiers deserving medals,
+    find the officer with the highest sociometric score, count privates deserving medals, list noncombat commanders,
+    check if any soldier participated in more than 15 operations, and remove officers with zero operations.
+    The program demonstrates the use of STL vectors and iterates over them to perform various queries and modifications.
+*/
+
 #include <list> 
 #include <vector> 
 #include <algorithm> 
@@ -21,11 +30,11 @@ enum option {
 
 enum soldier_type { PRIVATE = 1, COMMANDER, OFFICER };
 
-
+// Function to add a soldier to the vector
 void add(vector<Soldier*>& soldiers); 
-
+// Function to print all soldiers deserving a medal
 void printMedalList(const vector<Soldier*>& soldiers); 
-
+// Function to get the officer with the highest sociometric score from the vector
 Soldier* highestSociometricScore(const vector<Soldier*>& soldiers); 
 
 int main()

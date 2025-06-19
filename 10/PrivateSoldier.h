@@ -1,3 +1,12 @@
+/*
+    PrivateSoldier.h:
+    Declaration of the PrivateSoldier class, derived from the abstract Soldier class.
+    This class represents a private soldier in the military system, adding management
+    of operation grades. Private soldiers are eligible for medals based on their
+    performance in operations. The class provides constructors, destructor, and
+    overrides for medal eligibility, printing, and soldier type identification.
+*/
+
 #pragma once
 
 #include <iostream>

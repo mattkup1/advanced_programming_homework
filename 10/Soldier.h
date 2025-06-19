@@ -1,3 +1,12 @@
+/*
+    Soldier.h:
+    Declaration of the abstract Soldier class.
+    This class serves as a base for all soldier types (PrivateSoldier, Commander, Officer)
+    in the military system. It provides basic information such as ID, first name, last name,
+    and number of operations. The class enforces implementation of medal eligibility,
+    soldier type identification, and printing in derived classes.
+*/
+
 # pragma once
 
 #include <iostream>
