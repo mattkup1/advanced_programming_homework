@@ -1,0 +1,13 @@
+BasedOnStyle: Google
+BreakBeforeBraces: Allman   # puts { on its own line
+BraceWrapping:
+  AfterControlStatement: true
+  AfterFunction: true
+  AfterClass: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterEnum: true
+  BeforeElse: true
+  IndentBraces: false
+UseTab: Never
+IndentWidth: 4
