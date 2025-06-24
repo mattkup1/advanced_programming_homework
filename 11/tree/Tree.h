@@ -70,13 +70,14 @@ template <class T>
 int Tree<T>::leaves(Node* current) const
 {
 	if (!current->right && !current->left) return 1;
-	return leaves(current ->right) + leaves(current->left);
+	return (current->right ? leaves(current ->right) : 0) + (current->left ? leaves(current->left) : 0);
 }
 
 template <class T>
-int Tree<T>::height() const
+int Tree<T>::height(Node* current) const
 {
-
+	if (current == nullptr) return -1;
+	return 1 + max(height(current->left), height(current->right));
 }
 
 template <class T>
